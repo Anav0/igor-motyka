@@ -4,7 +4,7 @@ var camera, scene, renderer, clock, particle, delta, smokeParticles, text
 
 function init() {
   clock = new THREE.Clock()
-  let canvas = document.getElementById("webGl")
+  let canvas = document.getElementById("greetingCanvas")
   renderer = new THREE.WebGLRenderer({ canvas })
   renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -107,6 +107,6 @@ export default class Greeting extends React.Component {
     })
   }
   render() {
-    return <canvas id="webGl"></canvas>
+    return <canvas id="greetingCanvas"></canvas>
   }
 }

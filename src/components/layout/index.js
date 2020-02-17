@@ -2,8 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-
-const Wrapper = styled.div``
+import WebGlBackground from "src/components/WebGlBackground"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -18,7 +17,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Wrapper colors={Colors}>{children}</Wrapper>
+      <div>
+        {children}
+        <WebGlBackground />
+      </div>
     </>
   )
 }

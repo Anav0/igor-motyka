@@ -2,6 +2,7 @@ import React from "react"
 import * as THREE from "three"
 import styled from "styled-components"
 import SimplexNoise from "simplex-noise"
+import PointCursorLight from "src/components/PointCursorLight"
 
 var simplex = new SimplexNoise(Math.random)
 
@@ -31,7 +32,11 @@ var camera,
   box,
   blob,
   blobGeo,
-  blobMaterial
+  blobMaterial,
+  cursorLight,
+  plane,
+  planeGeo,
+  planeMaterial
 
 function initDottedPlane() {
   var numParticles = AMOUNTX * AMOUNTY
@@ -85,7 +90,9 @@ function initRenderer() {
   renderer = new THREE.WebGLRenderer({
     antialias: true,
     canvas,
+    alpha: true,
   })
+  renderer.setClearColor(0x000000, 1)
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
 }
@@ -103,6 +110,10 @@ function initLights() {
   let light = new THREE.DirectionalLight(0x404040, 2.25)
   light.target = blob
   scene.add(light)
+
+  cursorLight = new PointCursorLight(camera)
+  console.log(cursorLight)
+  scene.add(cursorLight.light)
 }
 function initBlob() {
   let angles = 64
@@ -111,13 +122,27 @@ function initBlob() {
   blobMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color(`hsl(45,100%,35%)`),
     emissive: "black",
-    reflectivity: 1,
     roughness: 0,
     metalness: 0,
   })
   blob = new THREE.Mesh(blobGeo, blobMaterial)
   blob.position.y = 1800
   scene.add(blob)
+}
+function initBackground() {
+  // TODO: fit him
+  planeGeo = new THREE.BoxGeometry(20000, 20000, 1, 64, 64)
+
+  planeMaterial = new THREE.MeshPhongMaterial({
+    color: 0xc50e40,
+    shininess: 100,
+    opacity: 1,
+    specular: 0x000000,
+  })
+  plane = new THREE.Mesh(planeGeo, planeMaterial)
+  plane.position.z = -300
+
+  scene.add(plane)
 }
 function init() {
   scene = new THREE.Scene()
@@ -126,14 +151,13 @@ function init() {
   //initShapes()
   initBlob()
   initDottedPlane()
+  initBackground()
   initLights()
-
   window.addEventListener("resize", onWindowResize, false)
   window.addEventListener("wheel", onMouseWheel, false)
   window.addEventListener("touchstart", onTouchStart, false)
   window.addEventListener("touchmove", onTouchMove, false)
 }
-
 function onMouseWheel(e) {
   var evt = _event
   evt.deltaY = e.wheelDeltaY || e.deltaY * -1
@@ -142,16 +166,13 @@ function onMouseWheel(e) {
 
   scroll(e)
 }
-
 function lerp(a, b, t) {
   return (1 - t) * a + t * b
 }
-
 function onTouchStart(e) {
   var t = e.targetTouches ? e.targetTouches[0] : e
   touchStartY = t.pageY
 }
-
 function onTouchMove(e) {
   var evt = _event
   var t = e.targetTouches ? e.targetTouches[0] : e
@@ -172,18 +193,15 @@ function scroll(e) {
     evt.y += evt.deltaY
   }
 }
-
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
   renderer.setSize(window.innerWidth, window.innerHeight)
 }
-
 function animate() {
   requestAnimationFrame(animate)
   render()
 }
-
 function renderDottedPlane() {
   var positions = particles.geometry.attributes.position.array
   var scales = particles.geometry.attributes.scale.array
@@ -207,14 +225,12 @@ function renderDottedPlane() {
   particles.geometry.attributes.position.needsUpdate = true
   particles.geometry.attributes.scale.needsUpdate = true
 }
-
 function scrollCamera() {
   percentage = lerp(getScrollPercent(), -_event.y, 0.07)
   //if (percentage > 60) return
   camera.position.y = initCameraY - percentage * 25
   camera.updateProjectionMatrix()
 }
-
 function renderShapes() {
   box.rotation.y += 0.01
   box.rotation.x += 0.01
@@ -256,7 +272,6 @@ function render() {
   renderer.render(scene, camera)
   count += 0.1
 }
-
 function getScrollPercent() {
   var h = document.documentElement,
     b = document.body,

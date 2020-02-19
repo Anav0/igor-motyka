@@ -9,7 +9,6 @@ function init() {
   renderer.setSize(window.innerWidth, window.innerHeight)
 
   scene = new THREE.Scene()
-  //scene.background = new THREE.Color(0xffffff)
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,

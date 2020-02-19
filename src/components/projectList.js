@@ -10,7 +10,7 @@ const BoxWrapper = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 10%;
-  margin-top: 115vh;
+  margin-top: 150vh;
   justify-content: center;
 `
 export default props => (

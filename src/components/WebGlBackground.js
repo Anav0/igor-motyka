@@ -3,6 +3,7 @@ import * as THREE from "three"
 import styled from "styled-components"
 import SimplexNoise from "simplex-noise"
 import PointCursorLight from "src/components/PointCursorLight"
+import Particles from "src/components/Particles"
 
 var simplex = new SimplexNoise(Math.random)
 
@@ -16,7 +17,7 @@ var _event = {
 }
 var percentage = 0,
   touchStartY
-
+var stones
 // this is the container where we will attach the scroll event. For this example we will set its height to 1200vh.
 var divContainer
 // container height - window height to limit the scroll at the top of the screen when we are at the bottom of the container
@@ -153,6 +154,7 @@ function init() {
   initDottedPlane()
   initBackground()
   initLights()
+  stones = new Particles(scene, 1250, 4000, 0, 2500)
   window.addEventListener("resize", onWindowResize, false)
   window.addEventListener("wheel", onMouseWheel, false)
   window.addEventListener("touchstart", onTouchStart, false)
@@ -227,7 +229,6 @@ function renderDottedPlane() {
 }
 function scrollCamera() {
   percentage = lerp(getScrollPercent(), -_event.y, 0.07)
-  //if (percentage > 60) return
   camera.position.y = initCameraY - percentage * 25
   camera.updateProjectionMatrix()
 }
@@ -269,6 +270,8 @@ function render() {
   //renderShapes()
   renderBlob()
   scrollCamera()
+  stones.render()
+  if (count > 25 && camera.position.y <= -1000) stones.shouldFire = true
   renderer.render(scene, camera)
   count += 0.1
 }

@@ -2,26 +2,45 @@ import React from "react"
 import Layout from "src/components/layout"
 import SEO from "src/components/seo"
 import GlobalStyle from "src/styles/global"
-import styled from "styled-components"
 import ProjectList from "src/components/projectList.js"
 import Header from "src/components/Header.js"
+import Img from "gatsby-image"
+import { graphql, useStaticQuery } from "gatsby"
+import styled from "styled-components"
 
-const Percentage = styled.span`
-  font-size: 24px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  color: white;
-  z-index: 1;
-`
-
-const IndexPage = props => (
-  <Layout>
-    <SEO title="Home" />
-    <GlobalStyle />
-    <Header />
-    <ProjectList />
-  </Layout>
-)
+const IndexPage = props => {
+  const data = useStaticQuery(graphql`
+    query Images {
+      image: file(relativePath: { eq: "icon-no-background.png" }) {
+        id
+        childImageSharp {
+          fixed(width: 48) {
+            ...GatsbyImageSharpFixed
+          }
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `)
+  console.log(data)
+  const Logo = styled.div`
+    position: fixed;
+    top: 50px;
+    left: 96px;
+  `
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <GlobalStyle />
+      <Logo>
+        <Img fixed={data.image.childImageSharp.fixed} />
+      </Logo>
+      <Header />
+      <ProjectList />
+    </Layout>
+  )
+}
 
 export default IndexPage

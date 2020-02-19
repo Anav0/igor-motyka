@@ -271,7 +271,7 @@ function render() {
   renderBlob()
   scrollCamera()
   stones.render()
-  if (count > 25 && camera.position.y <= -1000) stones.shouldFire = true
+  if (count > 18 && camera.position.y <= -1000) stones.shouldFire = true
   renderer.render(scene, camera)
   count += 0.1
 }

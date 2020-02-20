@@ -24,11 +24,11 @@ const IndexPage = props => {
       }
     }
   `)
-  console.log(data)
   const Logo = styled.div`
     position: fixed;
     top: 50px;
     left: 96px;
+    z-index: 10;
   `
   return (
     <Layout>

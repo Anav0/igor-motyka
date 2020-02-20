@@ -35,28 +35,33 @@ export default createGlobalStyle`
   }
 
   h1{
+    font-weight: 700;
     font-size: 3rem;
     font-weight: normal;
   }
 
   h2{
+    font-weight: 600;
     font-size: 2.5rem;
   }
 
   h3{
+    font-weight: 500;
     font-size: 2rem;
   }
 
   h4{
+    font-weight: 500;
     font-size: 1.5rem;
   }
 
   h5{
-
+    font-weight: 400;
     font-size: 1.25rem;
   }
 
   h6{
+    font-weight: 400;
     font-size: 1rem;
   }
 `

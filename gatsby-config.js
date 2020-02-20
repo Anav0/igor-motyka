@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: ".env",
+})
 module.exports = {
   siteMetadata: {
     title: `Igor Motyka's personal website`,
@@ -5,6 +8,20 @@ module.exports = {
     author: `Igor Motyka`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "CMS",
+        // This is the field under which it's accessible
+        fieldName: "cms",
+        // URL to query from
+        url: `${process.env.GATSBY_API_URL}/graphql`,
+
+        // Update once a day
+        refetchInterval: 60 * 60 * 24,
+      },
+    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-root-import`,

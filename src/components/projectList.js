@@ -1,22 +1,53 @@
 import styled from "styled-components"
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import Project from "src/components/project"
 
-const Box = styled.div`
-  width: 250px;
-  height: 250px;
-  background-color: ${props => `hsl(${props.number * 5}, 50%, 50%)`};
-`
 const BoxWrapper = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 10%;
-  margin-top: 150vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 200vh;
   justify-content: center;
+  align-items: center;
+  grid-column: 1/4;
+
+  @media (min-width: ${props => props.theme.sm}) {
+    grid-column: 1/4;
+    color: red;
+  }
+
+  @media (min-width: ${props => props.theme.lg}) {
+    grid-column: 3/10;
+  }
 `
-export default props => (
-  <BoxWrapper>
-    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
-      <Box key={value} number={value}></Box>
-    ))}
-  </BoxWrapper>
-)
+
+export default props => {
+  const { projects } = useStaticQuery(graphql`
+    query {
+      cms {
+        projects(sort: "id") {
+          Title
+          created_at
+          finishedDate
+          id
+          url
+          stack
+          Desc
+          Cover {
+            size
+            url
+            name
+          }
+        }
+      }
+    }
+  `).cms
+
+  return (
+    <BoxWrapper>
+      {projects.map(project => (
+        <Project key={project.id} project={project}></Project>
+      ))}
+    </BoxWrapper>
+  )
+}

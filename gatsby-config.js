@@ -8,6 +8,7 @@ module.exports = {
     author: `Igor Motyka`,
   },
   plugins: [
+    `gatsby-plugin-smoothscroll`,
     {
       resolve: "gatsby-source-graphql",
       options: {

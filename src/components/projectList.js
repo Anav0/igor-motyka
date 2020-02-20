@@ -44,7 +44,7 @@ export default props => {
   `).cms
 
   return (
-    <BoxWrapper>
+    <BoxWrapper id="projects">
       {projects.map(project => (
         <Project key={project.id} project={project}></Project>
       ))}

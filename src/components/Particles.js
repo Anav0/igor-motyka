@@ -1,7 +1,7 @@
 import * as THREE from "three"
 
 export default class Particles {
-  constructor(scene, amount = 1250, spread = 4000, offsetX = 0, offsetY = 0) {
+  constructor(scene, amount = 1500, spread = 5000, offsetX = 0, offsetY = 0) {
     this.scene = scene
     this.geometry = new THREE.BufferGeometry()
     this.amount = amount
@@ -53,12 +53,19 @@ export default class Particles {
   render() {
     let positions = this.points.geometry.attributes.position.array
 
-    if (!this.shouldFire) return
-
-    for (let i = 2; i < positions.length; i += 3) {
-      positions[i - 3] += (15 * i) / 500
-      positions[i - 2] += 0
-      positions[i - 1] += (2 * i) / 500
+    if (!this.shouldFire) {
+      for (let k = 2; k < positions.length; k += 3) {
+        let speed = (Math.random() * k) / 5000
+        positions[k - 3] += positions[k - 3] > 500 ? speed : -speed
+        positions[k - 2] += positions[k - 2] > 500 ? speed : -speed
+        positions[k - 1] += positions[k - 1] > 500 ? speed : -speed
+      }
+    } else {
+      for (let i = 2; i < positions.length; i += 3) {
+        positions[i - 3] += (15 * i) / 500
+        positions[i - 2] += 0
+        positions[i - 1] += (2 * i) / 500
+      }
     }
     this.points.geometry.attributes.position.needsUpdate = true
   }

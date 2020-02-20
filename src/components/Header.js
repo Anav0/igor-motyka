@@ -10,10 +10,12 @@ const HeaderWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   opacity: 0;
-
+  h1 {
+    font-size: 5rem;
+  }
   p {
-    margin-top: 10rem;
-    font-size: 1.25rem;
+    margin-top: 4rem;
+    font-size: 1.5rem;
     font-weight: lighter;
   }
 `
@@ -35,10 +37,7 @@ export default class Header extends React.Component {
       <HeaderWrapper className={this.state.isVisible ? "appear" : ""}>
         <h1>Igor Motyka</h1>
 
-        <p>
-          Check my projects and tech stack below ranging from WebGl and Vue to
-          Python
-        </p>
+        <p>Fullstack developer</p>
         <IconContext.Provider
           value={{
             size: "35px",

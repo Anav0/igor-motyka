@@ -5,11 +5,20 @@ import scrollTo from "gatsby-plugin-smoothscroll"
 const NavbarWrapper = styled.ul`
   display: flex;
   justify-content: space-evenly;
-  position: absolute;
   position: fixed;
-  top: 50px;
-  right: 96px;
+  top: 20px;
+  right: 20px;
   z-index: 10;
+
+  @media (min-width: ${props => props.theme.sm}) {
+    top: 40px;
+    right: 40px;
+  }
+
+  @media (min-width: ${props => props.theme.lg}) {
+    top: 50px;
+    right: 96px;
+  }
 `
 const NavItem = styled.a`
   min-width: 100px;

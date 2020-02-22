@@ -9,10 +9,11 @@ const BoxWrapper = styled.ul`
   margin-top: 200vh;
   justify-content: center;
   align-items: center;
-  grid-column: 1/4;
+  grid-column: 1/5;
+  width: 100%;
 
   @media (min-width: ${props => props.theme.sm}) {
-    grid-column: 1/4;
+    grid-column: 2/8;
     color: red;
   }
 

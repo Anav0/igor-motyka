@@ -32,9 +32,19 @@ const IndexPage = props => {
   `)
   const Logo = styled.div`
     position: fixed;
-    top: 50px;
-    left: 96px;
+    top: 20px;
+    left: 20px;
     z-index: 10;
+
+    @media (min-width: ${props => props.theme.sm}) {
+      top: 40px;
+      left: 40px;
+    }
+
+    @media (min-width: ${props => props.theme.lg}) {
+      top: 50px;
+      left: 96px;
+    }
   `
   return (
     <Layout>

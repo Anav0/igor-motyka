@@ -4,23 +4,86 @@ import { FaVuejs, FaSass, FaReact, FaPython } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { FiArrowUpRight } from "react-icons/fi"
 
+const ProjectWrapper = styled.div`
+  position: relative;
+  margin: 10rem 0;
+  width: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover;
+    @media (min-width: ${props => props.theme.sm}) {
+      height: 360px;
+      width: 100%;
+    }
+    @media (min-width: ${props => props.theme.md}) {
+      width: 100%;
+      height: 480px;
+    }
+    @media (min-width: ${props => props.theme.lg}) {
+      width: 1024px;
+      height: 600px;
+    }
+  }
+  .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+`
+
 const ProjectDesc = styled.div`
-  background-color: black;
-  padding: 30px 50px;
-  position: absolute;
-  right: -15%;
-  bottom: -10%;
+  h1 {
+    display: none;
+    font-size: 2rem;
+  }
   p {
-    max-width: 400px;
-    margin: 3rem 0;
-    line-height: 1.5;
-    text-align: justify;
+    position: absolute;
+    top: -55px;
+    left: 0;
+  }
+  .icon {
+    display: none;
+  }
+  @media (min-width: ${props => props.theme.sm}) {
+    .icon {
+      display: block;
+    }
+    h1 {
+      display: block;
+    }
+    p {
+      position: initial;
+      margin: 3rem 0;
+      text-align: justify;
+      line-height: 1.5;
+      max-width: 400px;
+    }
+    background-color: black;
+    padding: 3rem 4rem;
+    right: -15%;
+    bottom: -10%;
+    position: absolute;
+    right: -70px;
+    bottom: -180px;
+    width: 35rem;
+  }
+
+  @media (min-width: ${props => props.theme.lg}) {
+    right: -15%;
+    bottom: -10%;
+    width: auto;
   }
 `
 const Stack = styled.ul`
   display: flex;
   align-items: center;
   text-transform: capitalize;
+  margin-top: 10px;
+  @media (min-width: ${props => props.theme.sm}) {
+    margin-top: 0;
+  }
   .stack-header {
     margin-right: 1rem;
   }
@@ -31,19 +94,6 @@ const StackIcons = styled.ul`
 
   * {
     margin: 0.5rem;
-  }
-`
-const ProjectWrapper = styled.div`
-  position: relative;
-  margin: 10rem;
-  img {
-    max-width: 1024px;
-    transition: transform 0.3s ease-in-out;
-  }
-  .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 `
 

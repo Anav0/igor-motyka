@@ -7,12 +7,11 @@ import breakpoints from "src/styles/breakpoints"
 
 const MyGrid = styled.div`
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;
-  margin: 10px 0;
-
+  margin: 10px 10px;
   @media (min-width: ${props => props.theme.sm}) {
+    margin: 10px;
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 24px;
   }

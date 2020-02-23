@@ -23,6 +23,7 @@ export default createGlobalStyle`
     cursor: pointer;
     transition: transform 0.15s ease-in-out;
   }
+
   body{
     height:120vh;
     margin: 0;

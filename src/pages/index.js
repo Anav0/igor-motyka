@@ -34,7 +34,7 @@ const IndexPage = props => {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 10;
+    z-index: 11;
 
     @media (min-width: ${props => props.theme.sm}) {
       top: 40px;

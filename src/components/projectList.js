@@ -6,20 +6,9 @@ import Project from "src/components/project"
 const BoxWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  margin-top: 200vh;
   justify-content: center;
   align-items: center;
-  grid-column: 1/5;
   width: 100%;
-
-  @media (min-width: ${props => props.theme.sm}) {
-    grid-column: 2/8;
-    color: red;
-  }
-
-  @media (min-width: ${props => props.theme.lg}) {
-    grid-column: 3/10;
-  }
 `
 
 export default props => {
@@ -45,7 +34,7 @@ export default props => {
   `).cms
 
   return (
-    <BoxWrapper id="projects">
+    <BoxWrapper>
       {projects.map(project => (
         <Project key={project.id} project={project}></Project>
       ))}

@@ -11,7 +11,7 @@ const MyGrid = styled.div`
   grid-column-gap: 16px;
   margin: 10px 10px;
   @media (min-width: ${props => props.theme.sm}) {
-    margin: 10px;
+    margin: 0;
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 24px;
   }
@@ -19,7 +19,6 @@ const MyGrid = styled.div`
   @media (min-width: ${props => props.theme.lg}) {
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 32px;
-    margin: 20px 0;
   }
 `
 const Layout = ({ children }) => {

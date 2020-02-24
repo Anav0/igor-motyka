@@ -46,6 +46,48 @@ const IndexPage = props => {
       left: 96px;
     }
   `
+  const ContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 1/5;
+    margin-top: 100vh;
+    width: 100%;
+    @media (min-width: ${props => props.theme.sm}) {
+      grid-column: 2/8;
+      font-size: 7rem;
+      margin-top: 125vh;
+    }
+    @media (min-width: ${props => props.theme.lg}) {
+      grid-column: 3/11;
+      font-size: 12rem;
+      width: 100%;
+    }
+  `
+  const SectionHeaderWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+
+    @media (min-width: ${props => props.theme.sm}) {
+      height: 120vh;
+    }
+  `
+  const SectionHeader = styled.h1`
+    font-family: "Bungee Hairline";
+    font-size: 4rem;
+    text-align: center;
+    width: 100%;
+
+    @media (min-width: ${props => props.theme.sm}) {
+      font-size: 9rem;
+    }
+    @media (min-width: ${props => props.theme.lg}) {
+      font-size: 18rem;
+    }
+  `
   return (
     <Layout>
       <SEO title="Home" />
@@ -54,9 +96,17 @@ const IndexPage = props => {
       <Logo>
         <Img fixed={data.image.childImageSharp.fixed} />
       </Logo>
-      <Header />
-      <ProjectList />
       <Navbar />
+      <Header />
+      <ContentWrapper>
+        <SectionHeaderWrapper>
+          <SectionHeader id="projects">projects</SectionHeader>
+        </SectionHeaderWrapper>
+        <ProjectList />
+        <SectionHeaderWrapper>
+          <SectionHeader id="career">career</SectionHeader>
+        </SectionHeaderWrapper>
+      </ContentWrapper>
     </Layout>
   )
 }

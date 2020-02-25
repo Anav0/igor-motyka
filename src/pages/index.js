@@ -8,6 +8,8 @@ import Navbar from "src/components/Navbar.js"
 import Img from "gatsby-image"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
+import DesignList from "src/components/designList"
+
 const HomeAnchor = styled.div`
   position: absuolute;
   top: 0;
@@ -103,6 +105,10 @@ const IndexPage = props => {
           <SectionHeader id="projects">projects</SectionHeader>
         </SectionHeaderWrapper>
         <ProjectList />
+        <SectionHeaderWrapper>
+          <SectionHeader id="designs">designs</SectionHeader>
+        </SectionHeaderWrapper>
+        <DesignList />
         <SectionHeaderWrapper>
           <SectionHeader id="career">career</SectionHeader>
         </SectionHeaderWrapper>

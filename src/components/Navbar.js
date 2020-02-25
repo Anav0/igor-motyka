@@ -123,6 +123,7 @@ const NavbarItems = styled.ul`
 const navItems = [
   { text: "Home", anchor: "#home" },
   { text: "Projects", anchor: "#projects" },
+  { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
 ]
 

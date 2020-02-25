@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Project from "src/components/project"
+import Project from "src/components/Project"
 
 const BoxWrapper = styled.ul`
   display: flex;

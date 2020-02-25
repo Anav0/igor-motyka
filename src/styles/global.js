@@ -15,9 +15,13 @@ export default createGlobalStyle`
     transition: opacity 1.5s ease-in-out;
   }
   .icon:hover{
-
     transform: scale(1.15);
-
+  }
+  .list-item-margin{
+      margin: 4rem 0;
+  @media (min-width: ${props => props.theme.sm}) {
+    margin: 10rem 0;
+  }
   }
   .icon{
     cursor: pointer;

@@ -11,11 +11,8 @@ ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
 
 const ProjectWrapper = styled.div`
   position: relative;
-  margin: 4rem 0;
   width: 100%;
-  @media (min-width: ${props => props.theme.sm}) {
-    margin: 10rem 0;
-  }
+
   img {
     width: 100%;
     height: 100%;
@@ -172,7 +169,7 @@ export default props => {
     wrapper.addEventListener("mousemove", tilt)
   }, [])
   return (
-    <ProjectWrapper ref={projectWrapper}>
+    <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
           <img

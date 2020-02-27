@@ -9,7 +9,15 @@ export default createGlobalStyle`
     color: white;
     font-family: 'Tomorrow', sans-serif;
   }
-
+  .carousel{
+    width:100%;
+    height:100%;
+    cursor: grab;
+    outline: none;
+    &:before,&:after{
+      outline: none;
+    }
+  }
   .appear{
     opacity: 1;
     transition: opacity 1.5s ease-in-out;
@@ -19,9 +27,9 @@ export default createGlobalStyle`
   }
   .list-item-margin{
       margin: 4rem 0;
-  @media (min-width: ${props => props.theme.sm}) {
-    margin: 10rem 0;
-  }
+      @media (min-width: ${props => props.theme.sm}) {
+        margin: 10rem 0;
+      }
   }
   .icon{
     cursor: pointer;

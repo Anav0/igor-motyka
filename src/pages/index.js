@@ -9,6 +9,7 @@ import Img from "gatsby-image"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import DesignList from "src/components/designList"
+import Career from "src/components/career"
 
 const HomeAnchor = styled.div`
   position: absuolute;
@@ -71,15 +72,14 @@ const IndexPage = props => {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50vh;
-
+    min-height: 50vh;
     @media (min-width: ${props => props.theme.sm}) {
-      height: 120vh;
+      min-height: 100vh;
     }
   `
   const SectionHeader = styled.h1`
     font-family: "Bungee Hairline";
-    font-size: 4rem;
+    font-size: 5rem;
     text-align: center;
     width: 100%;
 
@@ -101,17 +101,18 @@ const IndexPage = props => {
       <Navbar />
       <Header />
       <ContentWrapper>
-        <SectionHeaderWrapper>
-          <SectionHeader id="projects">projects</SectionHeader>
+        <SectionHeaderWrapper id="projects">
+          <SectionHeader>projects</SectionHeader>
         </SectionHeaderWrapper>
         <ProjectList />
-        <SectionHeaderWrapper>
-          <SectionHeader id="designs">designs</SectionHeader>
+        <SectionHeaderWrapper id="designs">
+          <SectionHeader>designs</SectionHeader>
         </SectionHeaderWrapper>
         <DesignList />
-        <SectionHeaderWrapper>
-          <SectionHeader id="career">career</SectionHeader>
+        <SectionHeaderWrapper id="career">
+          <SectionHeader>career</SectionHeader>
         </SectionHeaderWrapper>
+        <Career />
       </ContentWrapper>
     </Layout>
   )

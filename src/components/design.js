@@ -22,7 +22,6 @@ const Bubble = styled.div`
   background-color: #0e1111;
   width: ${props => (props.size ? props.size : "15px")};
   height: ${props => (props.size ? props.size : "15px")};
-  transform: scale(2);
 `
 
 const DesignImage = styled.img`
@@ -87,7 +86,12 @@ export default class Design extends React.Component {
     let timeline = new TimelineMax()
     let controller = new ScrollMagic.Controller()
 
-    timeline.to(bubbles, 2, { scale: 0, ease: Power4.easeInOut })
+    timeline.fromTo(
+      bubbles,
+      2,
+      { scale: 6 },
+      { scale: 0, ease: Power4.easeInOut }
+    )
 
     new ScrollMagic.Scene({
       triggerElement: design,

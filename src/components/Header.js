@@ -35,8 +35,6 @@ const Icons = styled.div`
   .icon {
     margin: 15px;
   }
-  @media (min-width: ${props => props.theme.sm}) {
-  }
 `
 export default class Header extends React.Component {
   constructor(props) {

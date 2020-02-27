@@ -6,6 +6,7 @@ import WebGlBackground from "src/components/WebGlBackground"
 import breakpoints from "src/styles/breakpoints"
 
 const MyGrid = styled.div`
+  overflow: hidden;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;

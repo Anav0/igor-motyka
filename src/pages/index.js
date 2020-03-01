@@ -81,7 +81,6 @@ const IndexPage = props => {
     font-family: "Bungee Hairline";
     font-size: 5rem;
     text-align: center;
-    width: 100%;
 
     @media (min-width: ${props => props.theme.sm}) {
       font-size: 9rem;

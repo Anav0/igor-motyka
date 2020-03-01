@@ -89,7 +89,7 @@ export default class Design extends React.Component {
     timeline.fromTo(
       bubbles,
       2,
-      { scale: 6 },
+      { scale: 10 },
       { scale: 0, ease: Power4.easeInOut }
     )
 

@@ -6,6 +6,7 @@ import { FiArrowUpRight } from "react-icons/fi"
 import { TweenMax, TimelineMax, Power2, Power3, Power4 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
+import Img from "gatsby-image"
 
 const ProjectWrapper = styled.div`
   position: relative;
@@ -178,9 +179,7 @@ export default props => {
         href={props.project.publicURL}
       >
         <ImageWrapper>
-          <img
-            src={`${process.env.GATSBY_API_URL}${props.project.Cover.publicURL}`}
-          ></img>
+          <Img fluid={props.project.Cover.childImageSharp.fluid} />
           <ImageOverlay ref={projectImage}></ImageOverlay>
         </ImageWrapper>
       </a>

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { TweenMax, TimelineMax, Power4 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
+import Img from "gatsby-image"
 
 const DesignWrapper = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const Bubble = styled.div`
   background-color: #0e1111;
   width: ${props => (props.size ? props.size : "15px")};
   height: ${props => (props.size ? props.size : "15px")};
+  z-index: 11;
 `
 
 const DesignImage = styled.img`
@@ -103,10 +105,10 @@ export default class Design extends React.Component {
     return (
       <DesignWrapper ref={this.designWrapper} className="list-item-margin">
         {this.state.bubbles}
-        <DesignImage
-          src={`${process.env.GATSBY_API_URL}${this.props.design.image.publicURL}`}
-          alt={this.props.design.alt}
-        ></DesignImage>
+        <Img
+          style={{ width: "100%", height: "100%" }}
+          fluid={this.props.design.image.childImageSharp.fluid}
+        />
       </DesignWrapper>
     )
   }

@@ -18,9 +18,11 @@ export default props => {
           id
           alt
           image {
-            publicURL
-            size
-            name
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }

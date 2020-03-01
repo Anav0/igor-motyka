@@ -23,9 +23,11 @@ export default props => {
           url
           stack
           Cover {
-            size
-            publicURL
-            name
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }

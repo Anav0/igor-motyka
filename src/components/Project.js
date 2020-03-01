@@ -7,8 +7,6 @@ import { TweenMax, TimelineMax, Power2, Power3, Power4 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
 
-ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
-
 const ProjectWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -131,6 +129,8 @@ export default props => {
   var projectImage = React.createRef()
   var projectDesc = React.createRef()
   useEffect(() => {
+    ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
+
     let wrapper = projectWrapper.current
     let image = projectImage.current
     let desc = projectDesc.current

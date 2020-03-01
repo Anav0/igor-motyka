@@ -4,8 +4,6 @@ import { TweenMax, TimelineMax, Power4 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
 
-ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
-
 const DesignWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -75,6 +73,7 @@ export default class Design extends React.Component {
   }
 
   async componentDidMount() {
+    ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
     let design = this.designWrapper.current
 
     await this.setState({

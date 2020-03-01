@@ -79,10 +79,11 @@ const IndexPage = props => {
   `
   const SectionHeader = styled.h1`
     font-family: "Bungee Hairline";
-    font-size: 5rem;
+    font-size: 4.5rem;
     text-align: center;
 
     @media (min-width: ${props => props.theme.sm}) {
+      padding: 0;
       font-size: 9rem;
     }
     @media (min-width: ${props => props.theme.lg}) {

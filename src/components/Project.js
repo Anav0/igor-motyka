@@ -32,9 +32,10 @@ const ProjectDesc = styled.div`
     font-size: 2rem;
   }
   p {
-    position: absolute;
-    top: -55px;
-    left: 0;
+    margin-top: 1rem;
+    @media (min-width: ${props => props.theme.sm}) {
+      margin: 0;
+    }
   }
   .icon {
     display: none;
@@ -135,6 +136,7 @@ export default props => {
     let desc = projectDesc.current
     let timeline = new TimelineMax()
     let controller = new ScrollMagic.Controller()
+
     timeline
       .fromTo(
         image,

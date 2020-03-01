@@ -172,10 +172,14 @@ export default props => {
   }, [])
   return (
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
-      <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
+      <a
+        target="_blank"
+        rel="noreferrer noopener"
+        href={props.project.publicURL}
+      >
         <ImageWrapper>
           <img
-            src={`${process.env.GATSBY_API_URL}${props.project.Cover.url}`}
+            src={`${process.env.GATSBY_API_URL}${props.project.Cover.publicURL}`}
           ></img>
           <ImageOverlay ref={projectImage}></ImageOverlay>
         </ImageWrapper>
@@ -190,7 +194,11 @@ export default props => {
             className: "icon",
           }}
         >
-          <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
+          <a
+            target="_blank"
+            rel="noreferrer noopener"
+            href={props.project.publicURL}
+          >
             <FiArrowUpRight />
           </a>
         </IconContext.Provider>

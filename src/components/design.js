@@ -104,7 +104,7 @@ export default class Design extends React.Component {
       <DesignWrapper ref={this.designWrapper} className="list-item-margin">
         {this.state.bubbles}
         <DesignImage
-          src={`${process.env.GATSBY_API_URL}${this.props.design.image.url}`}
+          src={`${process.env.GATSBY_API_URL}${this.props.design.image.publicURL}`}
           alt={this.props.design.alt}
         ></DesignImage>
       </DesignWrapper>

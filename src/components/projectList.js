@@ -12,27 +12,25 @@ const BoxWrapper = styled.ul`
 `
 
 export default props => {
-  const { projects } = useStaticQuery(graphql`
+  const projects = useStaticQuery(graphql`
     query {
-      cms {
-        projects(sort: "id") {
+      allStrapiProject(sort: { order: ASC, fields: id }) {
+        nodes {
+          Desc
           Title
-          created_at
           finishedDate
           id
           url
           stack
-          Desc
           Cover {
             size
-            url
+            publicURL
             name
           }
         }
       }
     }
-  `).cms
-
+  `).allStrapiProject.nodes
   return (
     <BoxWrapper>
       {projects.map(project => (

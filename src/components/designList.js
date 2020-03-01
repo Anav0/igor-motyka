@@ -11,23 +11,21 @@ const DesignWrapper = styled.ul`
 `
 
 export default props => {
-  const { designs } = useStaticQuery(graphql`
+  const designs = useStaticQuery(graphql`
     query {
-      cms {
-        designs(sort: "id") {
+      allStrapiDesign(sort: { fields: id, order: ASC }) {
+        nodes {
           id
           alt
           image {
-            id
-            name
+            publicURL
             size
-            url
+            name
           }
         }
       }
     }
-  `).cms
-
+  `).allStrapiDesign.nodes
   return (
     <DesignWrapper>
       {designs.map(design => (

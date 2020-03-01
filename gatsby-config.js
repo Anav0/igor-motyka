@@ -10,17 +10,10 @@ module.exports = {
   plugins: [
     `gatsby-plugin-smoothscroll`,
     {
-      resolve: "gatsby-source-graphql",
+      resolve: `gatsby-source-strapi`,
       options: {
-        // This type will contain remote schema Query type
-        typeName: "CMS",
-        // This is the field under which it's accessible
-        fieldName: "cms",
-        // URL to query from
-        url: `${process.env.GATSBY_API_URL}/graphql`,
-
-        // Update once a day
-        refetchInterval: 60 * 60 * 24,
+        apiURL: process.env.GATSBY_API_URL,
+        contentTypes: [`project`, `career`, `design`],
       },
     },
     `gatsby-plugin-sass`,

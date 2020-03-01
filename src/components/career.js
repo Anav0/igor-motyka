@@ -96,20 +96,22 @@ function calculateDate(startDate, endDate) {
     })}`
 }
 export default props => {
-  const { careers } = useStaticQuery(graphql`
+  const careers = useStaticQuery(graphql`
     query {
-      cms {
-        careers(sort: "startDate") {
+      allStrapiCareer(sort: { order: DESC, fields: startDate }) {
+        nodes {
           id
-          endDate
-          desc
-          companyLink
           title
           startDate
+          desc
+          endDate
+          companyLink
+          created_at
         }
       }
     }
-  `).cms
+  `).allStrapiCareer.nodes
+
   return (
     <CareerWrapper>
       <Flickity

@@ -57,7 +57,7 @@ const ProjectDesc = styled.div`
     padding: 3rem 4rem;
     position: absolute;
     right: -70px;
-    bottom: -180px;
+    bottom: -100px;
     width: 35rem;
   }
 
@@ -112,9 +112,14 @@ const ImageWrapper = styled.div`
   height: 100%;
   overflow: hidden;
 
-  @media (min-width: ${props => props.theme.sm}) {
-    height: 360px;
+  .gatsby-image-wrapper {
     width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: ${props => props.theme.sm}) {
+    width: 100%;
+    height: 360px;
   }
   @media (min-width: ${props => props.theme.md}) {
     width: 100%;

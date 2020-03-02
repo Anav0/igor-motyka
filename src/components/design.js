@@ -11,6 +11,19 @@ const DesignWrapper = styled.div`
   height: 100%;
   position: relative;
   overflow: hidden;
+  justify-content: center;
+  align-items: center;
+
+  .gatsby-image-wrapper {
+    width: 100%;
+    height: 100%;
+    @media (min-width: ${props => props.theme.xl}) {
+      height: 90%;
+    }
+    img {
+      object-fit: contain !important;
+    }
+  }
 `
 
 const Bubble = styled.div`
@@ -21,12 +34,7 @@ const Bubble = styled.div`
   background-color: #0e1111;
   width: ${props => (props.size ? props.size : "15px")};
   height: ${props => (props.size ? props.size : "15px")};
-  z-index: 11;
-`
-
-const DesignImage = styled.img`
-  width: 100%;
-  height: 100%;
+  z-index: 10;
 `
 
 function generateBubbles(design) {
@@ -90,7 +98,7 @@ export default class Design extends React.Component {
     timeline.fromTo(
       bubbles,
       2,
-      { scale: 10 },
+      { scale: 13 },
       { scale: 0, ease: Power4.easeInOut }
     )
 
@@ -105,10 +113,7 @@ export default class Design extends React.Component {
     return (
       <DesignWrapper ref={this.designWrapper} className="list-item-margin">
         {this.state.bubbles}
-        <Img
-          style={{ width: "100%", height: "100%" }}
-          fluid={this.props.design.image.childImageSharp.fluid}
-        />
+        <Img fluid={this.props.design.image.childImageSharp.fluid} />
       </DesignWrapper>
     )
   }

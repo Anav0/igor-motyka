@@ -9,6 +9,12 @@ export default createGlobalStyle`
     color: white;
     font-family: 'Tomorrow', sans-serif;
   }
+  .firstSection{
+    margin-top: 100vh;
+    @media (min-width: ${props => props.theme.sm}) {
+      margin-top: 120vh;
+    }
+  }
   .carousel{
     width:100%;
     height:100%;

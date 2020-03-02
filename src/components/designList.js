@@ -8,6 +8,17 @@ const DesignWrapper = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-column: 1/5;
+  width: 100%;
+  @media (min-width: ${props => props.theme.sm}) {
+    grid-column: 2/8;
+    font-size: 7rem;
+  }
+  @media (min-width: ${props => props.theme.lg}) {
+    grid-column: 2/12;
+    font-size: 12rem;
+    width: 100%;
+  }
 `
 
 export default props => {
@@ -19,7 +30,7 @@ export default props => {
           alt
           image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 1920) {
                 ...GatsbyImageSharpFluid
               }
             }

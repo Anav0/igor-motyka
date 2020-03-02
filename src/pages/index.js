@@ -26,7 +26,7 @@ const IndexPage = props => {
           fixed(width: 48) {
             ...GatsbyImageSharpFixed
           }
-          fluid {
+          fluid(maxWidth: 1920) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -49,17 +49,16 @@ const IndexPage = props => {
       left: 96px;
     }
   `
-  const ContentWrapper = styled.div`
+
+  const Section = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     grid-column: 1/5;
-    margin-top: 100vh;
     width: 100%;
     @media (min-width: ${props => props.theme.sm}) {
       grid-column: 2/8;
       font-size: 7rem;
-      margin-top: 125vh;
     }
     @media (min-width: ${props => props.theme.lg}) {
       grid-column: 3/11;
@@ -67,6 +66,7 @@ const IndexPage = props => {
       width: 100%;
     }
   `
+
   const SectionHeaderWrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -100,7 +100,7 @@ const IndexPage = props => {
       </Logo>
       <Navbar />
       <Header />
-      <ContentWrapper>
+      <Section className="firstSection">
         <SectionHeaderWrapper id="projects">
           <SectionHeader>projects</SectionHeader>
         </SectionHeaderWrapper>
@@ -108,12 +108,14 @@ const IndexPage = props => {
         <SectionHeaderWrapper id="designs">
           <SectionHeader>designs</SectionHeader>
         </SectionHeaderWrapper>
-        <DesignList />
+      </Section>
+      <DesignList />
+      <Section>
         <SectionHeaderWrapper id="career">
           <SectionHeader>career</SectionHeader>
         </SectionHeaderWrapper>
         <Career />
-      </ContentWrapper>
+      </Section>
     </Layout>
   )
 }

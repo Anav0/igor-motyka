@@ -34,7 +34,7 @@ const Bubble = styled.div`
   background-color: #0e1111;
   width: ${props => (props.size ? props.size : "15px")};
   height: ${props => (props.size ? props.size : "15px")};
-  z-index: 10;
+  z-index: 9;
 `
 
 function generateBubbles(design) {

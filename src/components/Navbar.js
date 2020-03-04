@@ -51,7 +51,7 @@ const Hamburger = styled.div`
   z-index: 10;
   &.hamburger-open {
     &:after {
-      transform: scaleX(65%);
+      transform: scaleX(0.65);
     }
   }
 

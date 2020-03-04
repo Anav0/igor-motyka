@@ -83,6 +83,7 @@ export default class Design extends React.Component {
   }
 
   async componentDidMount() {
+    if (window.innerWidth < 500) return
     ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
     let design = this.designWrapper.current
 

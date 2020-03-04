@@ -38,7 +38,7 @@ const Bubble = styled.div`
 `
 
 function generateBubbles(design) {
-  const bubbleSize = 150
+  const bubbleSize = 250
   const bubbleArea = Math.round(Math.PI * Math.pow(bubbleSize / 2, 2))
   let row = 0
   let column = 0
@@ -98,7 +98,7 @@ export default class Design extends React.Component {
     timeline.fromTo(
       bubbles,
       2,
-      { scale: 13 },
+      { scale: 4 },
       { scale: 0, ease: Power4.easeInOut }
     )
 

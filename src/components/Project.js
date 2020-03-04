@@ -194,7 +194,7 @@ export default props => {
         <IconContext.Provider
           value={{
             size: "35px",
-            style: { margin: "2rem" },
+            style: { margin: "24px" },
             className: "icon",
           }}
         >
@@ -210,7 +210,7 @@ export default props => {
           <h5 className="stack-header">Stack:</h5>
           <IconContext.Provider
             value={{
-              size: "2rem",
+              size: "24px",
             }}
           >
             <StackIcons>

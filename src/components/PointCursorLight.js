@@ -1,14 +1,14 @@
 import * as THREE from "three"
 
-function onMouseMove(event, light, camera) {
+function changeLightPosition(clientX, clientY, light, camera) {
   if (!light) return
 
   let mouse = {
     x: 0,
     y: 0,
   }
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+  mouse.x = (clientX / window.innerWidth) * 2 - 1
+  mouse.y = -(clientY / window.innerHeight) * 2 + 1
   let vector = new THREE.Vector3(mouse.x, mouse.y, 0.5)
   vector.unproject(camera)
   let dir = vector.sub(camera.position).normalize()
@@ -18,7 +18,6 @@ function onMouseMove(event, light, camera) {
   light.position.y = pos.y
   light.position.z = pos.z
 }
-
 export default class PointCursorLight {
   constructor(camera) {
     this.camera = camera
@@ -33,12 +32,30 @@ export default class PointCursorLight {
     this.light.position.needsUpdate = true
 
     window.addEventListener("wheel", event =>
-      onMouseMove(event, this.light, this.camera)
+      changeLightPosition(event.clientX, event.clientY, this.light, this.camera)
+    )
+
+    window.addEventListener(
+      "touchmove",
+      event =>
+        changeLightPosition(
+          event.changedTouches[0].clientX,
+          event.changedTouches[0].clientY,
+          this.light,
+          this.camera
+        ),
+      false
     )
 
     window.addEventListener(
       "mousemove",
-      event => onMouseMove(event, this.light, this.camera),
+      event =>
+        changeLightPosition(
+          event.clientX,
+          event.clientY,
+          this.light,
+          this.camera
+        ),
       false
     )
   }

@@ -8,6 +8,14 @@ module.exports = {
     author: `Igor Motyka`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: process.env.GA_ID,
+        head: true,
+      },
+    },
     `gatsby-plugin-smoothscroll`,
     {
       resolve: `gatsby-source-strapi`,

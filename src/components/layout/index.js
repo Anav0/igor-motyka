@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider } from "styled-components"
 import WebGlBackground from "src/components/WebGlBackground"
 import breakpoints from "src/styles/breakpoints"
+import SEO from "src/components/seo"
 
 const MyGrid = styled.div`
   overflow: hidden;
@@ -11,13 +12,13 @@ const MyGrid = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;
   margin: 10px 10px;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     margin: 0;
     grid-template-columns: repeat(8, 1fr);
     grid-column-gap: 24px;
   }
 
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     grid-template-columns: repeat(12, 1fr);
     grid-column-gap: 32px;
   }
@@ -35,6 +36,22 @@ const Layout = ({ children }) => {
 
   return (
     <ThemeProvider theme={breakpoints}>
+      <SEO
+        title="Home"
+        keywords={[
+          "protfolio",
+          "freelancer",
+          "web dev",
+          "frontend",
+          "fullstack",
+          "backend",
+          "vue",
+          "gatsby",
+          "nuxt",
+          "scss",
+          "html",
+        ]}
+      />
       <MyGrid>
         {children}
         <WebGlBackground />

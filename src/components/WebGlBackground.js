@@ -36,6 +36,7 @@ function initRenderer() {
     canvas,
     alpha: true,
   })
+
   renderer.setClearColor(0x000000, 1)
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
@@ -52,10 +53,12 @@ function initCamera() {
   camera.position.y = initCameraY
 }
 
-function initLights() {
-  let light = new THREE.DirectionalLight(0x404040, 2.25)
-  light.target = blob
-  scene.add(light)
+function initLights(isInResume) {
+  if (!isInResume) {
+    let light = new THREE.DirectionalLight(0x404040, 2.25)
+    light.target = blob
+    scene.add(light)
+  }
 
   cursorLight = new PointCursorLight(camera)
   scene.add(cursorLight.light)
@@ -76,31 +79,45 @@ function initBlob() {
   scene.add(blob)
 }
 
-function initBackground() {
+function initBackground(isInResume) {
   // TODO: fit him
-  planeGeo = new THREE.BoxGeometry(20000, 20000, 1, 64, 64)
+  let size = 20000
+  planeGeo = new THREE.BoxGeometry(size, size, 1, 64, 64)
 
-  planeMaterial = new THREE.MeshPhongMaterial({
+  let config = {
     color: 0xc50e40,
     shininess: 100,
     opacity: 1,
     specular: 0x000000,
-  })
+  }
+  if (isInResume)
+    config = {
+      color: 0xc50e40,
+      shininess: 100,
+      opacity: 1,
+      specular: 0x000000,
+      emissive: 0xc50e40,
+      emissiveIntensity: 0.09,
+    }
+  planeMaterial = new THREE.MeshPhongMaterial(config)
   plane = new THREE.Mesh(planeGeo, planeMaterial)
   plane.position.z = -300
 
   scene.add(plane)
 }
 
-function init() {
+function init(isInResume) {
   scene = new THREE.Scene()
   initRenderer()
   initCamera()
-  initBlob()
-  initBackground()
-  initLights()
-  if (window.innerWidth < 500) stones = new Particles(scene, 500, 5000, 0, 2500)
-  else stones = new Particles(scene, 1500, 5000, 0, 2500)
+  if (!isInResume) initBlob()
+  initBackground(isInResume)
+  initLights(isInResume)
+  let offsetY = 2500
+  if (isInResume) offsetY = 1000
+  if (window.innerWidth < 500)
+    stones = new Particles(scene, 500, 5000, 0, offsetY)
+  else stones = new Particles(scene, 1500, 5000, 0, offsetY)
   window.addEventListener("resize", onWindowResize, false)
   window.addEventListener("wheel", onMouseWheel, false)
   window.addEventListener("touchstart", onTouchStart, false)
@@ -148,9 +165,9 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight)
 }
 
-function animate() {
+function animate(isInResume) {
   requestAnimationFrame(animate)
-  render()
+  render(isInResume)
 }
 
 function scrollCamera() {
@@ -175,8 +192,8 @@ function renderBlob() {
   blob.geometry.verticesNeedUpdate = true
 }
 
-function render() {
-  renderBlob()
+function render(isInResume) {
+  if (!isInResume) renderBlob()
   scrollCamera()
   stones.render()
   if (count > 30 && percentage >= 45) stones.shouldFire = true
@@ -202,13 +219,17 @@ const BackgroundCanvas = styled.canvas`
 `
 
 export default class WebGlBackground extends React.Component {
+  constructor(props) {
+    super(props)
+  }
   componentDidMount() {
     divContainer = document.body
     maxHeight =
       (divContainer.clientHeight || divContainer.offsetHeight) -
       window.innerHeight
-    init()
-    animate()
+    let isInResume = this.props.location.pathname === "/resume"
+    init(isInResume)
+    animate(isInResume)
   }
 
   render() {

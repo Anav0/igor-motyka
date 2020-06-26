@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import scrollTo from "gatsby-plugin-smoothscroll"
+import { Link, navigate } from "gatsby"
 
 const NavbarWrapper = styled.div`
   display: flex;
@@ -10,12 +11,12 @@ const NavbarWrapper = styled.div`
   /* opacity: 0; */
   top: 20px;
   right: 20px;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     top: 60px;
     right: 20px;
   }
 
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     top: 75px;
     right: 96px;
   }
@@ -24,6 +25,29 @@ const NavItem = styled.a`
   min-width: 100px;
   font-size: 1.25rem;
   position: relative;
+
+  &:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+  }
+  &:hover {
+    &:after {
+      width: 25%;
+    }
+  }
+`
+
+const NavLink = styled(Link)`
+  min-width: 100px;
+  font-size: 1.25rem;
+  position: relative;
+  text-decoration: none;
 
   &:after {
     content: "";
@@ -73,7 +97,7 @@ const Hamburger = styled.div`
     height: 2px;
     background-color: white;
   }
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     display: none;
   }
 `
@@ -111,7 +135,7 @@ const NavbarItems = styled.ul`
       transform: scale(100);
     }
   }
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     flex-direction: row;
     display: flex;
     &:before {
@@ -125,18 +149,23 @@ const navItems = [
   { text: "Projects", anchor: "#projects" },
   { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
+  { text: "Resume", to: "/resume" },
 ]
 
-export default props => {
+export default ({ location }) => {
   const [isVisible, setIsVisible] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
-  })
-  const onClick = item => {
-    setIsOpen(false)
-    scrollTo(item.anchor)
+  }, [])
+  const onClick = (item) => {
+    if (location.pathname === "/") {
+      setIsOpen(false)
+      scrollTo(item.anchor)
+    } else {
+      navigate(`/${item.anchor}`)
+    }
   }
   return (
     <NavbarWrapper
@@ -147,12 +176,19 @@ export default props => {
         onClick={() => setIsOpen(!isOpen)}
       ></Hamburger>
       <NavbarItems className={isOpen ? "items-shown" : ""}>
-        {navItems.map(item => {
-          return (
-            <NavItem onClick={() => onClick(item)} key={item.text}>
-              {item.text}
-            </NavItem>
-          )
+        {navItems.map((item) => {
+          if (item.to)
+            return (
+              <NavLink to={item.to} key={item.text}>
+                {item.text}
+              </NavLink>
+            )
+          else
+            return (
+              <NavItem onClick={() => onClick(item)} key={item.text}>
+                {item.text}
+              </NavItem>
+            )
         })}
       </NavbarItems>
     </NavbarWrapper>

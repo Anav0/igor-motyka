@@ -11,10 +11,18 @@ export default createGlobalStyle`
   }
   .firstSection{
     margin-top: 100vh;
-    @media (min-width: ${props => props.theme.sm}) {
+    @media (min-width: ${(props) => props.theme.sm}) {
       margin-top: 120vh;
     }
+
   }
+
+  .acrylic {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.5);
+  }
+
   .carousel{
     width:100%;
     height:100%;
@@ -33,7 +41,7 @@ export default createGlobalStyle`
   }
   .list-item-margin{
       margin: 4rem 0;
-      @media (min-width: ${props => props.theme.sm}) {
+      @media (min-width: ${(props) => props.theme.sm}) {
         margin: 10rem 0;
       }
   }

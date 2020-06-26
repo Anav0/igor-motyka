@@ -4,10 +4,38 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider } from "styled-components"
 import WebGlBackground from "src/components/WebGlBackground"
 import breakpoints from "src/styles/breakpoints"
-import SEO from "src/components/seo"
+import Seo from "src/components/Seo"
+import Navbar from "src/components/Navbar.js"
+import Img from "gatsby-image"
+import GlobalStyle from "src/styles/global"
+
+const HomeAnchor = styled.div`
+  position: absuolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+`
+
+const Logo = styled.div`
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 11;
+
+  @media (min-width: ${(props) => props.theme.sm}) {
+    top: 40px;
+    left: 40px;
+  }
+
+  @media (min-width: ${(props) => props.theme.lg}) {
+    top: 50px;
+    left: 96px;
+  }
+`
 
 const MyGrid = styled.div`
-  overflow: hidden;
+  ${(props) => (props.hide ? "overflow: hidden" : "overflow: auto")};
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 16px;
@@ -23,7 +51,7 @@ const MyGrid = styled.div`
     grid-column-gap: 32px;
   }
 `
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -31,12 +59,23 @@ const Layout = ({ children }) => {
           title
         }
       }
+      image: file(relativePath: { eq: "icon-no-background.png" }) {
+        id
+        childImageSharp {
+          fixed(width: 48) {
+            ...GatsbyImageSharpFixed
+          }
+          fluid(maxWidth: 1920) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 
   return (
     <ThemeProvider theme={breakpoints}>
-      <SEO
+      <Seo
         title="Home"
         keywords={[
           "protfolio",
@@ -46,15 +85,22 @@ const Layout = ({ children }) => {
           "fullstack",
           "backend",
           "vue",
+          "react",
           "gatsby",
           "nuxt",
           "scss",
           "html",
         ]}
       />
-      <MyGrid>
+      <MyGrid hide={location.pathname !== "/resume"}>
+        <GlobalStyle />
+        <HomeAnchor id="home"></HomeAnchor>
+        <Logo>
+          <Img fixed={data.image.childImageSharp.fixed} />
+        </Logo>
+        <Navbar location={location} />
         {children}
-        <WebGlBackground />
+        <WebGlBackground location={location} />
       </MyGrid>
     </ThemeProvider>
   )

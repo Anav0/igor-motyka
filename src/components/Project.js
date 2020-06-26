@@ -26,20 +26,22 @@ const ProjectWrapper = styled.div`
 `
 
 const ProjectDesc = styled.div`
+  min-width: 350px;
+  min-height: 225px;
   h1 {
     display: none;
     font-size: 2rem;
   }
   p {
     margin-top: 1rem;
-    @media (min-width: ${props => props.theme.sm}) {
+    @media (min-width: ${(props) => props.theme.sm}) {
       margin: 0;
     }
   }
   .icon {
     display: none;
   }
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     .icon {
       display: block;
     }
@@ -61,12 +63,12 @@ const ProjectDesc = styled.div`
     width: 35rem;
   }
 
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     right: -20%;
     bottom: -10%;
     width: auto;
   }
-  @media (min-width: ${props => props.theme.xl}) {
+  @media (min-width: ${(props) => props.theme.xl}) {
     right: 0%;
     bottom: -10%;
   }
@@ -76,7 +78,7 @@ const Stack = styled.ul`
   align-items: center;
   text-transform: capitalize;
   margin-top: 10px;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     margin-top: 0;
   }
   .stack-header {
@@ -93,10 +95,10 @@ const StackIcons = styled.ul`
 `
 
 const icons = {
-  vue: key => <FaVuejs key={key} />,
-  scss: key => <FaSass key={key} />,
-  react: key => <FaReact key={key} />,
-  python: key => <FaPython key={key} />,
+  vue: (key) => <FaVuejs key={key} />,
+  scss: (key) => <FaSass key={key} />,
+  react: (key) => <FaReact key={key} />,
+  python: (key) => <FaPython key={key} />,
 }
 const ImageOverlay = styled.div`
   position: absolute;
@@ -117,20 +119,20 @@ const ImageWrapper = styled.div`
     height: 100%;
   }
 
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     width: 100%;
     height: 360px;
   }
-  @media (min-width: ${props => props.theme.md}) {
+  @media (min-width: ${(props) => props.theme.md}) {
     width: 100%;
     height: 480px;
   }
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     width: 1024px;
     height: 600px;
   }
 `
-export default props => {
+export default (props) => {
   var projectWrapper = React.createRef()
   var projectImage = React.createRef()
   var projectDesc = React.createRef()
@@ -206,7 +208,7 @@ export default props => {
             }}
           >
             <StackIcons>
-              {props.project.stack.map(element => {
+              {props.project.stack.map((element) => {
                 if (icons[element])
                   return icons[element](props.project.id + element)
                 else

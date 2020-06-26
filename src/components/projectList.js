@@ -11,7 +11,7 @@ const BoxWrapper = styled.ul`
   width: 100%;
 `
 
-export default props => {
+export default (props) => {
   const projects = useStaticQuery(graphql`
     query {
       allStrapiProject(sort: { order: ASC, fields: id }) {
@@ -35,7 +35,7 @@ export default props => {
   `).allStrapiProject.nodes
   return (
     <BoxWrapper>
-      {projects.map(project => (
+      {projects.map((project) => (
         <Project key={project.id} project={project}></Project>
       ))}
     </BoxWrapper>

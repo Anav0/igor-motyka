@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import Layout from "../components/layout"
-import Seo from "../components/Seo"
+import Layout from "src/components/layout"
+import Seo from "src/components/Seo"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
-import breakpoints from "../styles/breakpoints"
+import breakpoints from "src/styles/breakpoints"
 
 const ResumeLayout = styled.div`
   width: 100%;

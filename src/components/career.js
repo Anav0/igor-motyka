@@ -26,27 +26,27 @@ const CareerStepWrapper = styled.div`
     opacity: 1;
   }
 
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     width: 90%;
     margin: 0;
     padding: 0;
   }
 
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     width: 70%;
   }
 
-  @media (min-width: ${props => props.theme.xl}) {
+  @media (min-width: ${(props) => props.theme.xl}) {
     width: 60%;
   }
 `
 
 const CareerStep = styled.div`
   width: 100%;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     width: 75%;
   }
-  @media (min-width: ${props => props.theme.lg}) {
+  @media (min-width: ${(props) => props.theme.lg}) {
     width: 65%;
   }
 `
@@ -55,7 +55,7 @@ const CareerStepHeader = styled.a`
   font-size: 3rem;
   display: block;
   margin-bottom: 4rem;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     font-size: 5rem;
   }
 `
@@ -65,7 +65,7 @@ const CareerStepDesc = styled.p`
   text-align: justify;
   font-weight: lighter;
   line-height: 1.5;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     font-size: 1.75rem;
   }
 `
@@ -74,7 +74,7 @@ const CareerStepDate = styled.span`
   font-weight: lighter;
   font-size: 1.25rem;
   margin-bottom: 4rem;
-  @media (min-width: ${props => props.theme.sm}) {
+  @media (min-width: ${(props) => props.theme.sm}) {
     font-size: 1.75rem;
   }
 `
@@ -95,7 +95,7 @@ function calculateDate(startDate, endDate) {
       month: "long",
     })}`
 }
-export default props => {
+export default (props) => {
   const careers = useStaticQuery(graphql`
     query {
       allStrapiCareer(sort: { order: DESC, fields: startDate }) {
@@ -106,7 +106,7 @@ export default props => {
           desc
           endDate
           companyLink
-          created_at
+          createdAt
         }
       }
     }
@@ -119,7 +119,7 @@ export default props => {
         elementType={"div"}
         options={flickityOptions}
       >
-        {careers.map(step => (
+        {careers.map((step) => (
           <CareerStepWrapper key={step.title}>
             <CareerStep>
               <CareerStepDate>

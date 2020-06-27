@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "src/components/layout"
-import Seo from "src/components/Seo"
+import Seo from "src/components/seo"
 import ProjectList from "src/components/projectList.js"
 import Header from "src/components/Header.js"
 import styled from "styled-components"

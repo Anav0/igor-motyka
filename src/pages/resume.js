@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import Layout from "src/components/layout"
-import Seo from "src/components/Seo"
+import Seo from "src/components/seo"
 import Img from "gatsby-image"
 import { useStaticQuery, graphql } from "gatsby"
 import breakpoints from "src/styles/breakpoints"

@@ -27,7 +27,9 @@ var percentage = 0,
   cursorLight,
   plane,
   planeGeo,
-  planeMaterial
+  planeMaterial,
+  isInResume = false,
+  showBlob = false
 
 function initRenderer() {
   let canvas = document.getElementById("waveCanvas")
@@ -53,13 +55,12 @@ function initCamera() {
   camera.position.y = initCameraY
 }
 
-function initLights(isInResume) {
-  if (!isInResume) {
+function initLights() {
+  if (showBlob) {
     let light = new THREE.DirectionalLight(0x404040, 2.25)
     light.target = blob
     scene.add(light)
   }
-
   cursorLight = new PointCursorLight(camera)
   scene.add(cursorLight.light)
 }
@@ -77,9 +78,10 @@ function initBlob() {
   blob = new THREE.Mesh(blobGeo, blobMaterial)
   blob.position.y = 1800
   scene.add(blob)
+  renderBlob()
 }
 
-function initBackground(isInResume) {
+function initBackground() {
   // TODO: fit him
   let size = 20000
   planeGeo = new THREE.BoxGeometry(size, size, 1, 64, 64)
@@ -106,11 +108,11 @@ function initBackground(isInResume) {
   scene.add(plane)
 }
 
-function init(isInResume) {
+function init() {
   scene = new THREE.Scene()
   initRenderer()
   initCamera()
-  if (!isInResume) initBlob()
+  initBlob()
   initBackground(isInResume)
   initLights(isInResume)
   let offsetY = 2500
@@ -160,20 +162,25 @@ function scroll(e) {
 }
 
 function onWindowResize() {
+  showBlob = !isInResume && window.innerWidth >= 1024
   camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
   renderer.setSize(window.innerWidth, window.innerHeight)
 }
 
-function animate(isInResume) {
+function animate() {
   requestAnimationFrame(animate)
-  render(isInResume)
+  render()
 }
 
 function scrollCamera() {
   percentage = lerp(getScrollPercent(), -_event.y, 0.07)
   camera.position.y = initCameraY - percentage * 25
   camera.updateProjectionMatrix()
+}
+
+function removeBlob() {
+  scene.remove(blob)
 }
 
 function renderBlob() {
@@ -192,8 +199,9 @@ function renderBlob() {
   blob.geometry.verticesNeedUpdate = true
 }
 
-function render(isInResume) {
-  if (!isInResume) renderBlob()
+function render() {
+  if (showBlob) renderBlob()
+
   scrollCamera()
   stones.render()
   if (count > 30 && percentage >= 45) stones.shouldFire = true
@@ -227,9 +235,12 @@ export default class WebGlBackground extends React.Component {
     maxHeight =
       (divContainer.clientHeight || divContainer.offsetHeight) -
       window.innerHeight
-    let isInResume = this.props.location.pathname === "/resume"
-    init(isInResume)
-    animate(isInResume)
+    isInResume = this.props.location.pathname === "/resume"
+    showBlob = !isInResume && window.innerWidth >= 1024
+
+    init()
+    animate()
+    if (!showBlob) removeBlob()
   }
 
   render() {

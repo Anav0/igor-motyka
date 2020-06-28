@@ -4,5 +4,5 @@ export default {
   md: "1020px",
   mdx: "1280px",
   lg: "1330px",
-  xl: "1920px",
+  xl: "1850px",
 }

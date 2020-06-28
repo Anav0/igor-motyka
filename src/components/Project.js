@@ -67,9 +67,10 @@ const ProjectDesc = styled.div`
     right: -20%;
     bottom: -10%;
     width: auto;
+    min-width: 450px;
   }
   @media (min-width: ${(props) => props.theme.xl}) {
-    right: 0%;
+    right: 0rem;
     bottom: -10%;
   }
 `
@@ -111,7 +112,7 @@ const ImageOverlay = styled.div`
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 250px;
   overflow: hidden;
 
   .gatsby-image-wrapper {
@@ -137,6 +138,7 @@ export default (props) => {
   var projectImage = React.createRef()
   var projectDesc = React.createRef()
   useEffect(() => {
+    console.log(window.innerWidth)
     ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax)
 
     let wrapper = projectWrapper.current

@@ -17,6 +17,7 @@ const ResumeLayout = styled.div`
     grid-column: 2/8;
     padding: 70px 60px;
     margin-top: 15rem;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   @media (min-width: ${(props) => props.theme.mdx}) {
@@ -32,6 +33,7 @@ const ResumeH1 = styled.h1``
 
 const ResumeH2 = styled.h2`
   font-weight: normal;
+
   margin-bottom: 0.5rem;
 `
 
@@ -63,11 +65,11 @@ const ResumeDetails = styled.div`
 
 const ResumeContent = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
   grid-gap: 4rem;
   height: 100%;
   box-sizing: border-box;
   @media (min-width: ${(props) => props.theme.sm}) {
+    grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
     padding-bottom: 6rem;
   }
   @media (min-width: ${(props) => props.theme.xl}) {

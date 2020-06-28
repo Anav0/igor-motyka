@@ -20,7 +20,6 @@ export default createGlobalStyle`
   .acrylic {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    background: rgba(0,0,0,0.5);
   }
 
   .carousel{

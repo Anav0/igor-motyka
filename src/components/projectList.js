@@ -9,6 +9,7 @@ const BoxWrapper = styled.ul`
   justify-content: center;
   align-items: center;
   width: 100%;
+  max-width: 1400px;
 `
 
 export default (props) => {

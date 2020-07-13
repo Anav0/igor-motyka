@@ -17,6 +17,7 @@ export default createGlobalStyle`
 
   }
 
+
   .acrylic {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

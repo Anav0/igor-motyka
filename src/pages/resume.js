@@ -131,6 +131,7 @@ const skills = [
       { header: "C#", percent: 60 },
     ],
   },
+
   {
     header: "Tools",
     skills: [
@@ -156,6 +157,13 @@ const skills = [
       { header: "Socket.io", percent: 98 },
       { header: "Gsap", percent: 75 },
       { header: "Three.js", percent: 45 },
+    ],
+  },
+  {
+    header: "Databases",
+    skills: [
+      { header: "MongoDb", percent: 75 },
+      { header: "SQL", percent: 45 },
     ],
   },
 ]

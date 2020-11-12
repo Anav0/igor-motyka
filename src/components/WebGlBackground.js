@@ -28,7 +28,7 @@ var percentage = 0,
   plane,
   planeGeo,
   planeMaterial,
-  isInResume = false,
+  isBlackListed = false,
   showBlob = false
 
 function initRenderer() {
@@ -49,7 +49,7 @@ function initCamera() {
     75,
     window.innerWidth / window.innerHeight,
     1,
-    10000
+    10000,
   )
   camera.position.z = 3000
   camera.position.y = initCameraY
@@ -92,7 +92,7 @@ function initBackground() {
     opacity: 1,
     specular: 0x000000,
   }
-  if (isInResume)
+  if (isBlackListed)
     config = {
       color: 0xc50e40,
       shininess: 100,
@@ -113,10 +113,10 @@ function init() {
   initRenderer()
   initCamera()
   initBlob()
-  initBackground(isInResume)
-  initLights(isInResume)
+  initBackground(isBlackListed)
+  initLights(isBlackListed)
   let offsetY = 2500
-  if (isInResume) offsetY = 1000
+  if (isBlackListed) offsetY = 1000
   if (window.innerWidth < 500)
     stones = new Particles(scene, 500, 5000, 0, offsetY)
   else stones = new Particles(scene, 1500, 5000, 0, offsetY)
@@ -162,7 +162,7 @@ function scroll(e) {
 }
 
 function onWindowResize() {
-  showBlob = !isInResume && window.innerWidth >= 1024
+  showBlob = !isBlackListed && window.innerWidth >= 1024
   camera.aspect = window.innerWidth / window.innerHeight
   camera.updateProjectionMatrix()
   renderer.setSize(window.innerWidth, window.innerHeight)
@@ -190,7 +190,7 @@ function renderBlob() {
   for (var i = 0; i < blob.geometry.vertices.length; i++) {
     var p = blob.geometry.vertices[i]
     p.normalize().multiplyScalar(
-      900 + 125 * simplex.noise3D(p.x * k + time, p.y * k, p.z * k)
+      900 + 125 * simplex.noise3D(p.x * k + time, p.y * k, p.z * k),
     )
   }
   blob.geometry.computeVertexNormals()
@@ -230,14 +230,16 @@ export default class WebGlBackground extends React.Component {
   constructor(props) {
     super(props)
   }
+
+  blackList = ["/resume", "/demos"]
+
   componentDidMount() {
     divContainer = document.body
     maxHeight =
       (divContainer.clientHeight || divContainer.offsetHeight) -
       window.innerHeight
-    isInResume = this.props.location.pathname === "/resume"
-    showBlob = !isInResume && window.innerWidth >= 1024
-
+    isBlackListed = this.blackList.includes(this.props.location.pathname)
+    showBlob = !isBlackListed && window.innerWidth >= 1024
     init()
     animate()
     if (!showBlob) removeBlob()

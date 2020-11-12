@@ -33,7 +33,6 @@ const ResumeH1 = styled.h1``
 
 const ResumeH2 = styled.h2`
   font-weight: normal;
-
   margin-bottom: 0.5rem;
 `
 

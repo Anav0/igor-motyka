@@ -149,6 +149,7 @@ const navItems = [
   { text: "Projects", anchor: "#projects" },
   { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
+  { text: "Demos", to: "/demos" },
   { text: "Resume", to: "/resume" },
 ]
 

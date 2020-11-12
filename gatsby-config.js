@@ -21,7 +21,7 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         apiURL: process.env.GATSBY_API_URL,
-        contentTypes: [`project`, `career`, `design`],
+        contentTypes: [`project`, `career`, `design`, `demo`],
       },
     },
     `gatsby-plugin-sass`,

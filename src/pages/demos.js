@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Layout from "src/components/layout"
 import Seo from "src/components/seo"
 import { graphql, useStaticQuery } from "gatsby"
-import { Demo, DemoCloseBtn, DemoImg, DemosList, EmbeddedWeb } from "./demos.styled"
+import { Demo, DemoCloseBtn, DemoImg, DemosList, EmbeddedWeb } from "src/styled/demos.styled"
 
 const DemosPage = ({ location }) => {
   const [loadedUrl, setLoadedUrl] = useState("")

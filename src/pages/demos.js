@@ -7,12 +7,8 @@ import { Demo, DemoCloseBtn, DemoImg, DemosList, EmbeddedWeb } from "src/styled/
 const DemosPage = ({ location }) => {
   const [loadedUrl, setLoadedUrl] = useState("")
 
-  useEffect(() => {
-    console.log(loadedUrl)
-  }, [loadedUrl])
-
   const demos = useStaticQuery(graphql`
-      query {
+      query DemoQuery {
           allStrapiDemo {
               edges {
                   node {

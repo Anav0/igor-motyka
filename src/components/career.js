@@ -97,7 +97,7 @@ function calculateDate(startDate, endDate) {
 }
 export default (props) => {
   const careers = useStaticQuery(graphql`
-    query {
+    query CareersQuery {
       allStrapiCareer(sort: { order: DESC, fields: startDate }) {
         nodes {
           id

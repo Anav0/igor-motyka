@@ -14,7 +14,7 @@ const BoxWrapper = styled.ul`
 
 export default (props) => {
   const projects = useStaticQuery(graphql`
-    query {
+    query ProjectsQuery{
       allStrapiProject(sort: { order: ASC, fields: id }) {
         nodes {
           Desc
@@ -23,7 +23,7 @@ export default (props) => {
           id
           url
           stack
-          Cover {
+          cover {
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
@@ -34,6 +34,7 @@ export default (props) => {
       }
     }
   `).allStrapiProject.nodes
+  console.log(projects)
   return (
     <BoxWrapper>
       {projects.map((project) => (

@@ -23,10 +23,6 @@ module.exports = {
         apiURL: process.env.GATSBY_API_URL,
         contentTypes: [`project`, `career`, `design`, `demo`],
       },
-      loginData: {
-        identifier: process.env.strapi_login,
-        password: process.env.strapi_password,
-      },
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,

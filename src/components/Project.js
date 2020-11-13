@@ -184,7 +184,7 @@ export default (props) => {
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
-          <Img fluid={props.project.Cover.childImageSharp.fluid} />
+          <Img fluid={props.project.cover.childImageSharp.fluid} />
           <ImageOverlay ref={projectImage}></ImageOverlay>
         </ImageWrapper>
       </a>

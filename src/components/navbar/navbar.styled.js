@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import scrollTo from "gatsby-plugin-smoothscroll"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 
-const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   position: fixed;
@@ -21,7 +19,7 @@ const NavbarWrapper = styled.div`
     right: 96px;
   }
 `
-const NavItem = styled.a`
+export const NavItem = styled.a`
   min-width: 100px;
   font-size: 1.25rem;
   position: relative;
@@ -43,7 +41,7 @@ const NavItem = styled.a`
   }
 `
 
-const NavLink = styled(Link)`
+export const NavLink = styled(Link)`
   min-width: 100px;
   font-size: 1.25rem;
   position: relative;
@@ -66,7 +64,7 @@ const NavLink = styled(Link)`
   }
 `
 
-const Hamburger = styled.div`
+export const Hamburger = styled.div`
   width: 32px;
   height: 32px;
   position: relative;
@@ -101,7 +99,7 @@ const Hamburger = styled.div`
     display: none;
   }
 `
-const NavbarItems = styled.ul`
+export const NavbarItems = styled.ul`
   display: none;
   width: 100%;
   &:before {
@@ -143,55 +141,3 @@ const NavbarItems = styled.ul`
     }
   }
 `
-
-const navItems = [
-  { text: "Home", anchor: "#home" },
-  { text: "Projects", anchor: "#projects" },
-  { text: "Designs", anchor: "#designs" },
-  { text: "Career", anchor: "#career" },
-  { text: "Demos", to: "/demos" },
-  { text: "Resume", to: "/resume" },
-]
-
-export default ({ location }) => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-  const onClick = (item) => {
-    if (location.pathname === "/") {
-      setIsOpen(false)
-      scrollTo(item.anchor)
-    } else {
-      navigate(`/${item.anchor}`)
-    }
-  }
-  return (
-    <NavbarWrapper
-      className={(isVisible ? "appear" : "", isOpen ? "is-open" : "")}
-    >
-      <Hamburger
-        className={isOpen ? "hamburger-open" : ""}
-        onClick={() => setIsOpen(!isOpen)}
-      ></Hamburger>
-      <NavbarItems className={isOpen ? "items-shown" : ""}>
-        {navItems.map((item) => {
-          if (item.to)
-            return (
-              <NavLink to={item.to} key={item.text}>
-                {item.text}
-              </NavLink>
-            )
-          else
-            return (
-              <NavItem onClick={() => onClick(item)} key={item.text}>
-                {item.text}
-              </NavItem>
-            )
-        })}
-      </NavbarItems>
-    </NavbarWrapper>
-  )
-}

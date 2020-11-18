@@ -1,99 +1,11 @@
 import React, { useEffect } from "react"
-import styled from "styled-components"
-import { FaVuejs, FaSass, FaReact, FaPython } from "react-icons/fa"
-import { IconContext } from "react-icons"
-import { FiArrowUpRight } from "react-icons/fi"
-import { TweenMax, TimelineMax, Power2, Power3, Power4 } from "gsap"
+import { TweenMax, TimelineMax, Power2 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
+import { IconContext } from "react-icons"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
 import Img from "gatsby-image"
-
-const ProjectWrapper = styled.div`
-  position: relative;
-  width: 100%;
-
-  img {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s ease-in-out;
-    object-fit: cover;
-  }
-  .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-`
-
-const ProjectDesc = styled.div`
-  min-width: 350px;
-  min-height: 225px;
-  h1 {
-    display: none;
-    font-size: 2rem;
-  }
-  p {
-    margin-top: 1rem;
-    @media (min-width: ${(props) => props.theme.sm}) {
-      margin: 0;
-    }
-  }
-  .icon {
-    display: none;
-  }
-  @media (min-width: ${(props) => props.theme.sm}) {
-    .icon {
-      display: block;
-    }
-    h1 {
-      display: block;
-    }
-    p {
-      position: initial;
-      margin: 3rem 0;
-      text-align: justify;
-      line-height: 1.5;
-      max-width: 400px;
-    }
-    background-color: black;
-    padding: 3rem 4rem;
-    position: absolute;
-    right: -70px;
-    bottom: -100px;
-    width: 35rem;
-  }
-
-  @media (min-width: ${(props) => props.theme.lg}) {
-    right: -20%;
-    bottom: -10%;
-    width: auto;
-    min-width: 450px;
-  }
-  @media (min-width: ${(props) => props.theme.xl}) {
-    right: 0rem;
-    bottom: -10%;
-  }
-`
-const Stack = styled.ul`
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
-  margin-top: 10px;
-  @media (min-width: ${(props) => props.theme.sm}) {
-    margin-top: 0;
-  }
-  .stack-header {
-    margin-right: 1rem;
-  }
-`
-const StackIcons = styled.ul`
-  display: flex;
-  align-items: center;
-
-  * {
-    margin: 0.5rem;
-  }
-`
+import { ImageOverlay, ImageWrapper, ProjectDesc, ProjectWrapper, Stack, StackIcons } from "./project.styled"
+import { FaPython, FaReact, FaSass, FaVuejs, FiArrowUpRight } from "react-icons/all"
 
 const icons = {
   vue: (key) => <FaVuejs key={key} />,
@@ -101,38 +13,7 @@ const icons = {
   react: (key) => <FaReact key={key} />,
   python: (key) => <FaPython key={key} />,
 }
-const ImageOverlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #0e1111;
-  top: 0;
-  left: 0;
-`
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
 
-  .gatsby-image-wrapper {
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (min-width: ${(props) => props.theme.sm}) {
-    width: 100%;
-    height: 360px;
-  }
-  @media (min-width: ${(props) => props.theme.md}) {
-    width: 100%;
-    height: 480px;
-  }
-  @media (min-width: ${(props) => props.theme.lg}) {
-    width: 1024px;
-    height: 600px;
-  }
-`
 export default (props) => {
   var projectWrapper = React.createRef()
   var projectImage = React.createRef()
@@ -152,14 +33,14 @@ export default (props) => {
         image,
         1.75,
         { skewX: 30, scale: 1.5 },
-        { skewX: 0, xPercent: 150, ease: Power2.easeOut }
+        { skewX: 0, xPercent: 150, ease: Power2.easeOut },
       )
       .fromTo(
         desc,
         0.5,
         { scale: 0, transformOrigin: "bottom right" },
         { scale: 1, ease: Power2.easeOut },
-        "-=1.25"
+        "-=1.25",
       )
 
     new ScrollMagic.Scene({
@@ -177,6 +58,7 @@ export default (props) => {
         rotationZ: "-0.1",
       })
     }
+
     wrapper.addEventListener("touchstart", tilt)
     wrapper.addEventListener("mousemove", tilt)
   }, [])
@@ -185,7 +67,7 @@ export default (props) => {
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
           <Img fluid={props.project.cover.childImageSharp.fluid} />
-          <ImageOverlay ref={projectImage}></ImageOverlay>
+          <ImageOverlay ref={projectImage} />
         </ImageWrapper>
       </a>
       <ProjectDesc ref={projectDesc}>

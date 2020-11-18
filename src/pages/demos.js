@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Layout from "src/components/layout"
 import Seo from "src/components/seo"
 import { graphql, useStaticQuery } from "gatsby"
-import { Demo, DemoCloseBtn, DemoImg, DemosList, EmbeddedWeb } from "src/styled/demos.styled"
+import { Demo, DemoImg, DemosList } from "src/styled-pages/demos.styled"
 
 const DemosPage = ({ location }) => {
-  const [loadedUrl, setLoadedUrl] = useState("")
-
   const demos = useStaticQuery(graphql`
       query DemoQuery {
           allStrapiDemo {
               edges {
                   node {
                       id,
-                      name,
                       url,
                       cover {
-                          id
-                          prettySize
                           childImageSharp {
                               fluid {
                                   ...GatsbyImageSharpFluid
@@ -33,12 +28,7 @@ const DemosPage = ({ location }) => {
   return (
     <Layout location={location}>
       <Seo title="Demos" />
-      {/*{*/}
-      {/*  loadedUrl.length > 0 ? (<EmbeddedWeb src={loadedUrl} />) : ("")*/}
-      {/*}*/}
-      {/*{*/}
-      {/*  loadedUrl.length > 0 ? (<DemoCloseBtn onClick={() => setLoadedUrl("")}>CLOSE</DemoCloseBtn>) : ("")*/}
-      {/*}*/}
+
       <DemosList>
         {demos.map(x =>
           <Demo key={x.node.id} href={x.node.url} target="_blank" rel="noopener">

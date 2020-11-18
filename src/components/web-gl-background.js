@@ -2,8 +2,8 @@ import React from "react"
 import * as THREE from "three"
 import styled from "styled-components"
 import SimplexNoise from "simplex-noise"
-import PointCursorLight from "src/components/PointCursorLight"
-import Particles from "src/components/Particles"
+import PointCursorLight from "src/components/point-cursor-light"
+import Particles from "src/components/particles"
 
 var simplex = new SimplexNoise(Math.random)
 

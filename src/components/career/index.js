@@ -40,11 +40,11 @@ export default (props) => {
       allStrapiCareer(sort: { order: DESC, fields: startDate }) {
         nodes {
           id
-          title
-          startDate
-          desc
-          endDate
-          companyLink
+          Title
+          StartDate
+          Desc
+          EndDate
+          CompanyLink
         }
       }
     }
@@ -58,19 +58,19 @@ export default (props) => {
         options={flickityOptions}
       >
         {careers.map((step) => (
-          <CareerStepWrapper key={step.title}>
+          <CareerStepWrapper key={step.Title}>
             <CareerStep>
               <CareerStepDate>
-                {calculateDate(step.startDate, step.endDate)}
+                {calculateDate(step.StartDate, step.EndDate)}
               </CareerStepDate>
               <CareerStepHeader
                 target="_blank"
                 rel="noreferrer noopener"
-                href={step.companyLink}
+                href={step.CompanyLink}
               >
                 {step.title}
               </CareerStepHeader>
-              <CareerStepDesc>{step.desc}</CareerStepDesc>
+              <CareerStepDesc>{step.Desc}</CareerStepDesc>
             </CareerStep>
           </CareerStepWrapper>
         ))}

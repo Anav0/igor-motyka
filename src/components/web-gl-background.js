@@ -205,8 +205,8 @@ function render() {
   scrollCamera()
   stones.render()
   if (count > 30 && percentage >= 45) stones.shouldFire = true
+  else count += 0.1
   renderer.render(scene, camera)
-  count += 0.1
 }
 
 function getScrollPercent() {

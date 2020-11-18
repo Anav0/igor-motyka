@@ -45,7 +45,6 @@ export default (props) => {
           desc
           endDate
           companyLink
-          created_at
         }
       }
     }

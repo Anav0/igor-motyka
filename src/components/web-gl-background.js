@@ -5,19 +5,19 @@ import SimplexNoise from "simplex-noise"
 import PointCursorLight from "src/components/point-cursor-light"
 import Particles from "src/components/particles"
 
-var simplex = new SimplexNoise(Math.random)
+const simplex = new SimplexNoise(Math.random)
 
-var _event = {
+const _event = {
   y: 0,
   deltaY: 0,
 }
-var percentage = 0,
+let percentage = 0,
   touchStartY,
   stones,
   divContainer,
-  maxHeight,
-  initCameraY = 500,
-  camera,
+  maxHeight
+const initCameraY = 500
+let camera,
   scene,
   renderer,
   count = 0,
@@ -127,7 +127,7 @@ function init() {
 }
 
 function onMouseWheel(e) {
-  var evt = _event
+  const evt = _event
   evt.deltaY = e.wheelDeltaY || e.deltaY * -1
   evt.deltaY *= 0.5
   scroll(e)
@@ -138,20 +138,20 @@ function lerp(a, b, t) {
 }
 
 function onTouchStart(e) {
-  var t = e.targetTouches ? e.targetTouches[0] : e
+  const t = e.targetTouches ? e.targetTouches[0] : e
   touchStartY = t.pageY
 }
 
 function onTouchMove(e) {
-  var evt = _event
-  var t = e.targetTouches ? e.targetTouches[0] : e
+  const evt = _event
+  const t = e.targetTouches ? e.targetTouches[0] : e
   evt.deltaY = (t.pageY - touchStartY) * 5
   touchStartY = t.pageY
   scroll(e)
 }
 
 function scroll(e) {
-  var evt = _event
+  const evt = _event
   if (evt.y + evt.deltaY > 0) {
     evt.y = 0
   } else if (-(evt.y + evt.deltaY) >= maxHeight) {
@@ -187,8 +187,8 @@ function renderBlob() {
   let time = performance.now() * 0.0005
 
   let k = 1
-  for (var i = 0; i < blob.geometry.vertices.length; i++) {
-    var p = blob.geometry.vertices[i]
+  for (let i = 0; i < blob.geometry.vertices.length; i++) {
+    const p = blob.geometry.vertices[i]
     p.normalize().multiplyScalar(
       900 + 125 * simplex.noise3D(p.x * k + time, p.y * k, p.z * k),
     )
@@ -210,7 +210,7 @@ function render() {
 }
 
 function getScrollPercent() {
-  var h = document.documentElement,
+  const h = document.documentElement,
     b = document.body,
     st = "scrollTop",
     sh = "scrollHeight"
@@ -246,6 +246,6 @@ export default class WebGlBackground extends React.Component {
   }
 
   render() {
-    return <BackgroundCanvas id="waveCanvas"></BackgroundCanvas>
+    return <BackgroundCanvas id="waveCanvas"/>
   }
 }

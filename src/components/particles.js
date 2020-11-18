@@ -1,29 +1,31 @@
 import * as THREE from "three"
 
 export default class Particles {
+  shouldFire = false
+
   constructor(scene, amount = 1500, spread = 5000, offsetX = 0, offsetY = 0) {
     this.scene = scene
     this.geometry = new THREE.BufferGeometry()
     this.amount = amount
     this.spread = spread
-    var positions = []
-    var colors = []
+    let positions = []
+    let colors = []
 
-    var color = new THREE.Color()
+    let color = new THREE.Color()
 
-    var n = spread,
+    let n = spread,
       n2 = n / 2 // particles spread in the cube
 
-    for (var i = 0; i < amount; i++) {
-      var x = Math.random() * n - n2 - offsetX
-      var y = Math.random() * n - n2 - offsetY
-      var z = Math.random() * n - n2
+    for (let i = 0; i < amount; i++) {
+      const x = Math.random() * n - n2 - offsetX
+      const y = Math.random() * n - n2 - offsetY
+      const z = Math.random() * n - n2
 
       positions.push(x, y, z)
 
-      var r = x / n + 0.5
-      var g = y / n + 0.5
-      var b = z / n + 0.5
+      const r = x / n + 0.5
+      const g = y / n + 0.5
+      const b = z / n + 0.5
 
       color.setRGB(r, g, b)
 

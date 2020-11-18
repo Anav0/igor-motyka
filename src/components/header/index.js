@@ -1,25 +1,17 @@
 import React from "react"
-import styled from "styled-components"
 import { FaRegEnvelope, FaGithub, FaBehance } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { HeaderWrapper, Icons } from "./header.styled"
 
-
-export default class Index extends React.Component {
+export default class Header extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isVisible: false }
   }
-  componentDidMount() {
-    this.setState({
-      isVisible: true,
-    })
-  }
+
   render() {
     return (
-      <HeaderWrapper className={this.state.isVisible ? "appear" : ""}>
+      <HeaderWrapper >
         <h1>Igor Motyka</h1>
-
         <p>Fullstack developer</p>
         <IconContext.Provider
           value={{

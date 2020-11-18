@@ -10,7 +10,7 @@ import Img from "gatsby-image"
 import GlobalStyle from "src/styles/global"
 
 const HomeAnchor = styled.div`
-  position: absuolute;
+  position: absolute;
   top: 0;
   width: 1px;
   height: 1px;

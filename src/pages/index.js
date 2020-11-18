@@ -2,9 +2,9 @@ import React from "react"
 import Layout from "src/components/layout"
 import Seo from "src/components/seo"
 import ProjectList from "src/components/projects-list.js"
-import Index from "src/components/header"
 import DesignList from "src/components/design-list"
 import Career from "src/components/career"
+import Header from "src/components/header"
 import { Section, SectionHeader, SectionHeaderWrapper } from "src/styled-pages/index.styled"
 
 const IndexPage = ({ location }) => {
@@ -12,7 +12,7 @@ const IndexPage = ({ location }) => {
   return (
     <Layout location={location}>
       <Seo title="Home" />
-      <Index />
+      <Header />
       <Section className="firstSection">
         <SectionHeaderWrapper id="projects">
           <SectionHeader>projects</SectionHeader>

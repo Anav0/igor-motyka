@@ -6,7 +6,6 @@ export const HeaderWrapper = styled.div`
   top: 55vh;
   left: 50%;
   transform: translate(-50%, 0);
-  opacity: 0;
   width: 100%;
   h1 {
     font-size: 4rem;

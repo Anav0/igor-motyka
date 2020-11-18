@@ -71,8 +71,8 @@ export default (props) => {
         </ImageWrapper>
       </a>
       <ProjectDesc ref={projectDesc}>
-        <h1>{props.project.Title}</h1>
-        <p>{props.project.Desc}</p>
+        <h1>{props.project.title}</h1>
+        <p>{props.project.desc}</p>
         <IconContext.Provider
           value={{
             size: "35px",

@@ -4,8 +4,8 @@ export const skills = [
     skills: [
       { header: "Javascript", percent: 98 },
       { header: "Typescript", percent: 90 },
-      { header: "Python", percent: 65 },
-      { header: "C#", percent: 60 },
+      { header: "Python", percent: 80 },
+      { header: "C#", percent: 85 },
     ],
   },
 
@@ -21,7 +21,7 @@ export const skills = [
   {
     header: "Frameworks",
     skills: [
-      { header: "Vue", percent: 98 },
+      { header: "Vue", percent: 95 },
       { header: "Nuxt", percent: 95 },
       { header: "React", percent: 90 },
       { header: "Gatsby", percent: 90 },
@@ -40,7 +40,7 @@ export const skills = [
     header: "Databases",
     skills: [
       { header: "MongoDb", percent: 75 },
-      { header: "SQL", percent: 45 },
+      { header: "SQL", percent: 75 },
     ],
   },
 ]

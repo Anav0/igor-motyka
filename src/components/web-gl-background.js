@@ -239,7 +239,7 @@ export default class WebGlBackground extends React.Component {
       (divContainer.clientHeight || divContainer.offsetHeight) -
       window.innerHeight
     isBlackListed = this.blackList.includes(this.props.location.pathname)
-    showBlob = !isBlackListed && window.innerWidth >= 1024
+    showBlob = false//!isBlackListed && window.innerWidth >= 1024
     init()
     animate()
     if (!showBlob) removeBlob()

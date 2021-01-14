@@ -3,12 +3,12 @@ import * as THREE from "three"
 export default class Particles {
   shouldFire = false
 
-  constructor(amount = 1500, spread = 5000, offsetX = 0, offsetY = 0) {
+  constructor(amount = 1500, spread = 5000, offsetX = 0, offsetY = 1700) {
     this.amount = amount
     this.spread = spread
     this.offsetX = offsetX;
     this.offsetY = offsetY;
-
+    this.counter = 0;
   }
 
   init(scene) {
@@ -56,6 +56,14 @@ export default class Particles {
   }
 
   update(scene) {
+    if (!this.shouldFire)
+      this.counter += 0.25
+
+    if (this.counter >= 100) {
+      this.shouldFire = true
+      this.counter = 0
+    }
+
     let positions = this.points.geometry.attributes.position.array
 
     if (!this.shouldFire) {

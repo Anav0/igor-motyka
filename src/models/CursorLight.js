@@ -7,6 +7,10 @@ export class CursorLight {
         this.mesh = undefined;
         this.material = undefined;
         this.light = undefined;
+        this.mouse = {
+            x: 0,
+            y: 0
+        }
     }
 
     init(scene) {
@@ -21,19 +25,18 @@ export class CursorLight {
         this.light.add(this.mesh);
         this.light.position.needsUpdate = true
 
+        window.addEventListener("mousemove", (e) => {
+            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        })
+
         scene.add(this.light);
     }
 
     update(scene) {
         if (!this.light) return
 
-        let mouse = {
-            x: 0,
-            y: 0,
-        }
-        mouse.x = (window.clientX / window.innerWidth) * 2 - 1
-        mouse.y = -(window.clientY / window.innerHeight) * 2 + 1
-        let vector = new THREE.Vector3(mouse.x, mouse.y, 0.5)
+        let vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5)
         vector.unproject(this.camera)
         let dir = vector.sub(this.camera.position).normalize()
         let distance = -this.camera.position.z / dir.z
@@ -41,9 +44,8 @@ export class CursorLight {
         this.light.position.x = pos.x
         this.light.position.y = pos.y
         this.light.position.z = pos.z
+        this.light.position.needsUpdate = true
     }
-
-
 
 }
 

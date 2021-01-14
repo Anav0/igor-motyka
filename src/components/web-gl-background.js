@@ -22,14 +22,13 @@ export const WebGlBackground = () => {
     1,
     10000,
   ));
-  const [renderer, setRenderer] = useState();
   const [scene, setScene] = useState(new THREE.Scene());
   const [maxHeight, setMaxheight] = useState();
   const [evt, setEvt] = useState({
     y: 0,
     deltaY: 0,
   });
-  const [objects, _] = useState([new Background(), new CursorLight(camera), new Particles()]);
+  const [objects, _] = useState([new Background(camera), new CursorLight(camera), new Particles()]);
 
   const scroll = (_) => {
     if (evt.y + evt.deltaY > 0) {
@@ -39,6 +38,8 @@ export const WebGlBackground = () => {
     } else {
       evt.y += evt.deltaY
     }
+
+
   }
 
   const getScrollPercent = () => {
@@ -53,7 +54,7 @@ export const WebGlBackground = () => {
     return (1 - t) * a + t * b
   }
 
-  const hookEvents = () => {
+  const hookEvents = (renderer) => {
     window.addEventListener("resize", (e) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
@@ -73,6 +74,7 @@ export const WebGlBackground = () => {
     window.addEventListener("touchstart", (e) => {
       const t = e.targetTouches ? e.targetTouches[0] : e
       setTouchStartY(t.pageY)
+      scroll(e)
     }, false)
 
     window.addEventListener("touchmove", (e) => {
@@ -100,26 +102,29 @@ export const WebGlBackground = () => {
     renderer.setClearColor(0x000000, 1)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
-    setRenderer(renderer);
 
-    hookEvents()
+    hookEvents(renderer)
 
     //Init objects
     for (let i = 0; i < objects.length; i++) {
       objects[i].init(scene);
     }
 
-    const percentage = lerp(getScrollPercent(), - evt.y, 0.07)
-    camera.position.y = initCameraY - percentage * 25
-    camera.updateProjectionMatrix()
 
     //Update on frame
-    requestAnimationFrame(() => {
+    const animate = () => {
+      requestAnimationFrame(animate)
       for (let i = 0; i < objects.length; i++) {
-        objects[i].update(scene);
+        objects[i].update(scene, evt);
       }
+
+      const percentage = lerp(getScrollPercent(), - evt.y, 0.07)
+      camera.position.y = initCameraY - percentage * 25
+      camera.updateProjectionMatrix()
+
       renderer.render(scene, camera)
-    })
+    };
+    animate()
   }, [])
 
 

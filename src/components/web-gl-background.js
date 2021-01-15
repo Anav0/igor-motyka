@@ -16,19 +16,11 @@ const BackgroundCanvas = styled.canvas`
 
 export const WebGlBackground = () => {
   const [touchStartY, setTouchStartY] = useState(0);
-  const [camera, setCamera] = useState(new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    1,
-    10000,
-  ));
-  const [scene, setScene] = useState(new THREE.Scene());
   const [maxHeight, setMaxheight] = useState();
   const [evt, setEvt] = useState({
     y: 0,
     deltaY: 0,
   });
-  const [objects, _] = useState([new Background(camera), new CursorLight(camera), new Particles()]);
 
   const scroll = (_) => {
     if (evt.y + evt.deltaY > 0) {
@@ -38,8 +30,6 @@ export const WebGlBackground = () => {
     } else {
       evt.y += evt.deltaY
     }
-
-
   }
 
   const getScrollPercent = () => {
@@ -54,7 +44,7 @@ export const WebGlBackground = () => {
     return (1 - t) * a + t * b
   }
 
-  const hookEvents = (renderer) => {
+  const hookEvents = (renderer, camera) => {
     window.addEventListener("resize", (e) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
@@ -87,12 +77,20 @@ export const WebGlBackground = () => {
 
   useEffect(() => {
     const initCameraY = 500;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      1,
+      10000,
+    )
+    camera.position.z = 3000
+    camera.position.y = initCameraY
 
     setMaxheight((document.body.clientHeight || document.body.offsetHeight) -
       window.innerHeight)
 
-    camera.position.z = 3000
-    camera.position.y = initCameraY
+    const objects = [new Background(camera), new CursorLight(camera), new Particles()];
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -103,7 +101,7 @@ export const WebGlBackground = () => {
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    hookEvents(renderer)
+    hookEvents(renderer, camera)
 
     //Init objects
     for (let i = 0; i < objects.length; i++) {

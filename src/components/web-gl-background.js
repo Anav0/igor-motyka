@@ -15,64 +15,46 @@ const BackgroundCanvas = styled.canvas`
 `
 
 export const WebGlBackground = () => {
-  const [touchStartY, setTouchStartY] = useState(0);
-  const [maxHeight, setMaxheight] = useState();
-  const [evt, setEvt] = useState({
-    y: 0,
-    deltaY: 0,
-  });
+  // const getScrollPercent = () => {
+  //   const h = document.documentElement,
+  //     b = document.body,
+  //     st = "scrollTop",
+  //     sh = "scrollHeight"
+  //   return ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
+  // }
 
-  const scroll = (_) => {
-    if (evt.y + evt.deltaY > 0) {
-      evt.y = 0
-    } else if (-(evt.y + evt.deltaY) >= maxHeight) {
-      evt.y = -maxHeight
-    } else {
-      evt.y += evt.deltaY
-    }
+  // const lerp = (a, b, t) => {
+  //   return (1 - t) * a + t * b
+  // }
+
+  const updateCamera = (e, camera, initCameraY) => {
+    // const minHeight = 0;
+    // const maxHeight = window.innerHeight;
+
+    // if (camera.position.y + increaseBy < maxHeight && e.deltaY < 0) {
+    //   console.log("SCROLL 1");
+    //   camera.position.y -= 100
+    // }
+
+    // if (camera.position.y - increaseBy > minHeight && e.deltaY > 0) {
+    //   console.log("SCROLL 2");
+    //   camera.position.y += 100
+    // }
+    // camera.updateProjectionMatrix()
   }
 
-  const getScrollPercent = () => {
-    const h = document.documentElement,
-      b = document.body,
-      st = "scrollTop",
-      sh = "scrollHeight"
-    return ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
-  }
-
-  const lerp = (a, b, t) => {
-    return (1 - t) * a + t * b
-  }
-
-  const hookEvents = (renderer, camera) => {
+  const hookEvents = (renderer, camera, initCameraY) => {
     window.addEventListener("resize", (e) => {
       camera.aspect = window.innerWidth / window.innerHeight
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
     }, false)
 
-    window.addEventListener("wheel", (e) => {
-      setEvt({
-        y: 0,
-        deltaY: 0,
-      })
-      evt.deltaY = e.wheelDeltaY || e.deltaY * -1
-      evt.deltaY *= 0.5
-      scroll(e)
-    }, false)
+    window.addEventListener("wheel", (e) => updateCamera(e, camera, initCameraY))
 
-    window.addEventListener("touchstart", (e) => {
-      const t = e.targetTouches ? e.targetTouches[0] : e
-      setTouchStartY(t.pageY)
-      scroll(e)
-    }, false)
+    window.addEventListener("touchstart", (e) => updateCamera(e, camera, initCameraY))
 
-    window.addEventListener("touchmove", (e) => {
-      const t = e.targetTouches ? e.targetTouches[0] : e
-      evt.deltaY = (t.pageY - touchStartY) * 5
-      setTouchStartY(t.pageY)
-      scroll(e)
-    }, false)
+    window.addEventListener("touchmove", (e) => updateCamera(e, camera, initCameraY))
   }
 
   useEffect(() => {
@@ -87,9 +69,6 @@ export const WebGlBackground = () => {
     camera.position.z = 3000
     camera.position.y = initCameraY
 
-    setMaxheight((document.body.clientHeight || document.body.offsetHeight) -
-      window.innerHeight)
-
     const objects = [new Background(camera), new CursorLight(camera), new Particles()];
 
     const renderer = new THREE.WebGLRenderer({
@@ -97,36 +76,29 @@ export const WebGlBackground = () => {
       canvas: document.getElementById("waveCanvas"),
       alpha: true,
     })
+
     renderer.setClearColor(0x000000, 1)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(window.innerWidth, window.innerHeight)
 
-    hookEvents(renderer, camera)
+    hookEvents(renderer, camera, initCameraY)
 
     //Init objects
     for (let i = 0; i < objects.length; i++) {
       objects[i].init(scene);
     }
 
-
     //Update on frame
     const animate = () => {
       requestAnimationFrame(animate)
       for (let i = 0; i < objects.length; i++) {
-        objects[i].update(scene, evt);
+        objects[i].update(scene);
       }
-
-      const percentage = lerp(getScrollPercent(), - evt.y, 0.07)
-      camera.position.y = initCameraY - percentage * 25
-      camera.updateProjectionMatrix()
 
       renderer.render(scene, camera)
     };
     animate()
   }, [])
-
-
-
 
   return (<BackgroundCanvas id="waveCanvas" />)
 

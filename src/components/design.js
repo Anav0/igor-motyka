@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image"
 
 const DesignWrapper = styled.div`
   display: flex;
@@ -31,8 +31,8 @@ export default class Design extends React.Component {
   render() {
     return (
       <DesignWrapper className="list-item-margin">
-        <GatsbyImage image={this.props.design.image.childImageSharp.gatsbyImageData} />
+        <StaticImage src={`src/images/${props.design.imageName}`} />
       </DesignWrapper>
-    );
+    )
   }
 }

@@ -8,6 +8,9 @@ module.exports = {
     author: `Igor Motyka`,
   },
   plugins: [
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -20,7 +23,10 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: process.env.NODE_ENV === `production` ? process.env.GATSBY_API_URL : 'http://localhost:1337',
+        apiURL:
+          process.env.NODE_ENV === `production`
+            ? process.env.GATSBY_API_URL
+            : "http://localhost:1337",
         contentTypes: [`project`, `career`, `design`, `demo`],
       },
     },
@@ -31,6 +37,9 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },

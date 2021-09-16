@@ -6,7 +6,7 @@ import { WebGlBackground } from "src/components/web-gl-background"
 import breakpoints from "src/styles/breakpoints"
 import Seo from "src/components/seo"
 import Navbar from "src/components/navbar"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import GlobalStyle from "src/styles/global"
 
 const HomeAnchor = styled.div`
@@ -52,26 +52,23 @@ const MyGrid = styled.div`
   }
 `
 const Layout = ({ children, location }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-      image: file(relativePath: { eq: "icon-no-background.png" }) {
-        id
-        childImageSharp {
-          fixed(width: 48) {
-            ...GatsbyImageSharpFixed
-          }
-          fluid(maxWidth: 1920) {
-            ...GatsbyImageSharpFluid
-          }
-        }
+  const data = useStaticQuery(graphql`query SiteTitleQuery {
+  site {
+    siteMetadata {
+      title
+    }
+  }
+  image: file(relativePath: {eq: "icon-no-background.png"}) {
+    id
+    childImageSharp {
+      gatsbyImageData(width: 48, layout: FIXED)
+      fluid(maxWidth: 1920) {
+        ...GatsbyImageSharpFluid
       }
     }
-  `)
+  }
+}
+`)
 
   return (
     <ThemeProvider theme={breakpoints}>
@@ -96,14 +93,14 @@ const Layout = ({ children, location }) => {
         <GlobalStyle />
         <HomeAnchor id="home"></HomeAnchor>
         <Logo>
-          <Img fixed={data.image.childImageSharp.fixed} />
+          <GatsbyImage image={data.image.childImageSharp.gatsbyImageData} />
         </Logo>
         <Navbar location={location} />
         {children}
         <WebGlBackground location={location} />
       </MyGrid>
     </ThemeProvider>
-  )
+  );
 }
 
 Layout.propTypes = {

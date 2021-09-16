@@ -13,27 +13,24 @@ const BoxWrapper = styled.ul`
 `
 
 export default () => {
-  const projects = useStaticQuery(graphql`
-    query ProjectsQuery{
-      allStrapiProject(sort: { order: ASC, fields: id }) {
-        nodes {
-          desc
-          title
-          finishedDate
-          id
-          url
-          stack
-          cover {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+  const projects = useStaticQuery(graphql`query ProjectsQuery {
+  allStrapiProject(sort: {order: ASC, fields: id}) {
+    nodes {
+      desc
+      title
+      finishedDate
+      id
+      url
+      stack
+      cover {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
-  `).allStrapiProject.nodes
+  }
+}
+`).allStrapiProject.nodes
   return (
     <BoxWrapper>
       {projects.map((project) => (

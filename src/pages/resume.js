@@ -25,18 +25,15 @@ const ResumePage = ({ location }) => {
     })
   }, [])
 
-  const data = useStaticQuery(graphql`
-      query ResumeQuery {
-          image: file(relativePath: { eq: "face.jpg" }) {
-              id
-              childImageSharp {
-                  fluid(maxWidth: 450) {
-                      ...GatsbyImageSharpFluid
-                  }
-              }
-          }
-      }
-  `)
+  const data = useStaticQuery(graphql`query ResumeQuery {
+  image: file(relativePath: {eq: "face.jpg"}) {
+    id
+    childImageSharp {
+      gatsbyImageData(width: 450, layout: CONSTRAINED)
+    }
+  }
+}
+`)
 
   return (
     <Layout location={location}>
@@ -45,7 +42,7 @@ const ResumePage = ({ location }) => {
         <ResumeDetails>
           {windowWidth >
           breakpoints.sm.substring(0, breakpoints.sm.length - 2) ? (
-            <ResumeImg fluid={data.image.childImageSharp.fluid}></ResumeImg>
+            <ResumeImg fluid={data.image.childImageSharp.gatsbyImageData}></ResumeImg>
           ) : (
             ""
           )}
@@ -76,7 +73,7 @@ const ResumePage = ({ location }) => {
         </ResumeContent>
       </ResumeLayout>
     </Layout>
-  )
+  );
 }
 
 export default ResumePage

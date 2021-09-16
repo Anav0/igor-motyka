@@ -3,7 +3,7 @@ import { TweenMax, TimelineMax, Power2 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { IconContext } from "react-icons"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { ImageOverlay, ImageWrapper, ProjectDesc, ProjectWrapper, Stack, StackIcons } from "./project.styled"
 import { FaPython, FaReact, FaSass, FaVuejs, FiArrowUpRight } from "react-icons/all"
 
@@ -66,7 +66,7 @@ export default (props) => {
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
-          <Img fluid={props.project.cover.childImageSharp.fluid} />
+          <GatsbyImage image={props.project.cover.childImageSharp.gatsbyImageData} />
           <ImageOverlay ref={projectImage} />
         </ImageWrapper>
       </a>
@@ -103,5 +103,5 @@ export default (props) => {
         </Stack>
       </ProjectDesc>
     </ProjectWrapper>
-  )
+  );
 }

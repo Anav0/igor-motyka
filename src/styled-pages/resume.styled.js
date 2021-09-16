@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const ResumeLayout = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ export const ResumeH3 = styled.h3`
   margin-top: 2rem;
 `
 
-export const ResumeImg = styled(Img)`
+export const ResumeImg = styled(GatsbyImage)`
   filter: grayscale(75%);
   position: absolute;
   left: -10rem;

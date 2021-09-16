@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const DemosList = styled("ul")`
  display: grid;
@@ -23,7 +23,7 @@ export const DemosList = styled("ul")`
 export const Demo = styled("a")`
 `
 
-export const DemoImg = styled(Img)`
+export const DemoImg = styled(GatsbyImage)`
   object-cover: cover;
   width:100%;
   height:100%;

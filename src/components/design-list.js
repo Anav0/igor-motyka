@@ -22,23 +22,20 @@ const DesignWrapper = styled.ul`
 `
 
 export default props => {
-  const designs = useStaticQuery(graphql`
-    query DesignsQuery {
-      allStrapiDesign(sort: { fields: id, order: ASC }) {
-        nodes {
-          id
-          alt
-          image {
-            childImageSharp {
-              fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
+  const designs = useStaticQuery(graphql`query DesignsQuery {
+  allStrapiDesign(sort: {fields: id, order: ASC}) {
+    nodes {
+      id
+      alt
+      image {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
-  `).allStrapiDesign.nodes
+  }
+}
+`).allStrapiDesign.nodes
   return (
     <DesignWrapper>
       {designs.map(design => (

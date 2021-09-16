@@ -13,28 +13,7 @@ const BoxWrapper = styled.ul`
   max-width: 1400px;
 `
 
-export default () => {
-  // TODO: not ideal to query here and in design-list.
-  // Not an elegant solution
-  const images = useStaticQuery(graphql`
-    query ProjectImages {
-      allFile {
-        edges {
-          node {
-            name
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-    }
-  `).allFile.edges
-  let namesByImagedata = new Map()
-  for (let i = 0; i < images.length; i++) {
-    const element = images[i].node
-    namesByImagedata.set(element.name, element.childImageSharp.gatsbyImageData)
-  }
+export default ({ namesByImagedata }) => {
   return (
     <BoxWrapper>
       {projects.map((project) => (

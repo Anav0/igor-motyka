@@ -5,7 +5,7 @@ export const career = [
     desc: "At Medinet I'm working on automating patient scheduling process using various metaheuristics algorithms such as simulated annealing, tabu search and genetic algorithms.",
     companyLink: "medinet.opole.pl",
     startDate: new Date("2020-11-01"),
-    endDate: "",
+    endDate: null,
   },
   {
     id: "1",

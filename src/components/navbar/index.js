@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react"
 import scrollTo from "gatsby-plugin-smoothscroll"
 import { Link, navigate } from "gatsby"
-import { Hamburger, NavbarItems, NavbarWrapper, NavItem, NavLink } from "./navbar.styled"
+import {
+  Hamburger,
+  NavbarItems,
+  NavbarWrapper,
+  NavItem,
+  NavLink,
+} from "./navbar.styled"
 
 const navItems = [
   { text: "Home", anchor: "#home" },
   { text: "Projects", anchor: "#projects" },
   { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
-  { text: "Demos", to: "/demos" },
+  { text: "Demos", to: "#demos" },
   { text: "Resume", to: "/resume" },
 ]
 
@@ -32,9 +38,9 @@ export default ({ location }) => {
       className={(isVisible ? "appear" : "", isOpen ? "is-open" : "")}
     >
       <Hamburger
-  className={isOpen ? "hamburger-open" : ""}
-  onClick={() => setIsOpen(!isOpen)}
-  />
+        className={isOpen ? "hamburger-open" : ""}
+        onClick={() => setIsOpen(!isOpen)}
+      />
       <NavbarItems className={isOpen ? "items-shown" : ""}>
         {navItems.map((item) => {
           if (item.to)

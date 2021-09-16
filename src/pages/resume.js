@@ -6,12 +6,16 @@ import breakpoints from "src/styles/breakpoints"
 import {
   ResumeContent,
   ResumeDetails,
-  ResumeH1, ResumeH2,
+  ResumeH1,
+  ResumeH2,
   ResumeH3,
   ResumeImg,
-  ResumeLayout, ResumeSkill,
-  ResumeSkills, SkillHeader, SkillPercent,
-} from "src/styled-pages/resume.styled"
+  ResumeLayout,
+  ResumeSkill,
+  ResumeSkills,
+  SkillHeader,
+  SkillPercent,
+} from "src/styled/resume.styled"
 import { skills } from "src/data/skills"
 
 const ResumePage = ({ location }) => {
@@ -25,15 +29,16 @@ const ResumePage = ({ location }) => {
     })
   }, [])
 
-  const data = useStaticQuery(graphql`query ResumeQuery {
-  image: file(relativePath: {eq: "face.jpg"}) {
-    id
-    childImageSharp {
-      gatsbyImageData(width: 450, layout: CONSTRAINED)
+  const data = useStaticQuery(graphql`
+    query ResumeQuery {
+      image: file(relativePath: { eq: "face.jpg" }) {
+        id
+        childImageSharp {
+          gatsbyImageData(width: 450, layout: CONSTRAINED)
+        }
+      }
     }
-  }
-}
-`)
+  `)
 
   return (
     <Layout location={location}>
@@ -42,7 +47,9 @@ const ResumePage = ({ location }) => {
         <ResumeDetails>
           {windowWidth >
           breakpoints.sm.substring(0, breakpoints.sm.length - 2) ? (
-            <ResumeImg fluid={data.image.childImageSharp.gatsbyImageData}></ResumeImg>
+            <ResumeImg
+              fluid={data.image.childImageSharp.gatsbyImageData}
+            ></ResumeImg>
           ) : (
             ""
           )}
@@ -73,7 +80,7 @@ const ResumePage = ({ location }) => {
         </ResumeContent>
       </ResumeLayout>
     </Layout>
-  );
+  )
 }
 
 export default ResumePage

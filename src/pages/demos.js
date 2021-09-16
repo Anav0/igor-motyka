@@ -3,39 +3,22 @@ import Layout from "src/components/layout"
 import Seo from "src/components/seo"
 import { graphql, useStaticQuery } from "gatsby"
 import { Demo, DemoImg, DemosList } from "src/styled-pages/demos.styled"
+import demos from "src/data/demos.js"
 
 const DemosPage = ({ location }) => {
-  const demos = useStaticQuery(graphql`query DemoQuery {
-  allStrapiDemo {
-    edges {
-      node {
-        id
-        url
-        cover {
-          childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
-          }
-        }
-      }
-    }
-  }
-}
-`).allStrapiDemo.edges
-
   return (
-      <Layout location={location}>
-        <Seo title="Demos" />
+    <Layout location={location}>
+      <Seo title="Demos" />
 
-        <DemosList>
-          {demos.map(x =>
-            <Demo key={x.node.id} href={x.node.url} target="_blank" rel="noopener">
-              <DemoImg fluid={x.node.cover.childImageSharp.gatsbyImageData} />
-            </Demo>,
-          )}
-        </DemosList>
-      </Layout>
-  );
+      <DemosList>
+        {demos.map((demo) => (
+          <Demo key={demo.id} href={demo.url} target="_blank" rel="noopener">
+            <DemoImg src={`src/images/${demo.imageName}`} />
+          </Demo>
+        ))}
+      </DemosList>
+    </Layout>
+  )
 }
-
 
 export default DemosPage

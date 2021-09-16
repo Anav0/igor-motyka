@@ -24,7 +24,7 @@ const DesignWrapper = styled.ul`
 
 export default (props) => {
   const images = useStaticQuery(graphql`
-    query Image {
+    query DesignImages {
       allFile {
         edges {
           node {

@@ -6,7 +6,7 @@ export const projects = [
     finishedDate: new Date(),
     url: "http://bgs.bet/",
     stack: ["nuxt", "sass"],
-    cover: "bgs.png",
+    imageName: "bgs",
   },
   {
     id: "1",
@@ -15,7 +15,7 @@ export const projects = [
     finishedDate: new Date(),
     url: "https://animal-shelter.netlify.app/",
     stack: ["vue", "Mockaroo"],
-    cover: "shelter.png",
+    imageName: "shelter",
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ export const projects = [
     finishedDate: new Date(),
     url: "https://oliwia-czuk.netlify.app/",
     stack: ["Gsap", "Gatsby"],
-    cover: "czuk.png",
+    imageName: "czuk",
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ export const projects = [
     finishedDate: new Date(),
     url: "https://drawing-automata.netlify.app/",
     stack: ["TS", "HTML", "Python", "Canvas"],
-    cover: "automata.png",
+    imageName: "automata",
   },
   {
     id: "4",
@@ -42,6 +42,6 @@ export const projects = [
     finishedDate: new Date(),
     url: "https://tictactoeminmax.netlify.app/",
     stack: ["JS"],
-    cover: "tic.png",
+    imageName: "tic",
   },
 ]

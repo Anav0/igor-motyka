@@ -27,7 +27,7 @@ const icons = {
   python: (key) => <FaPython key={key} />,
 }
 
-export default (props) => {
+export default ({ project, image }) => {
   var projectWrapper = React.createRef()
   var projectImage = React.createRef()
   var projectDesc = React.createRef()
@@ -77,15 +77,15 @@ export default (props) => {
   }, [])
   return (
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
-      <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
+      <a target="_blank" rel="noreferrer noopener" href={project.url}>
         <ImageWrapper>
-          <StaticImage alt="" src={`../../images/${props.project.cover}`} />
+          <GatsbyImage alt="" image={image} />
           <ImageOverlay ref={projectImage} />
         </ImageWrapper>
       </a>
       <ProjectDesc ref={projectDesc}>
-        <h1>{props.project.title}</h1>
-        <p>{props.project.desc}</p>
+        <h1>{project.title}</h1>
+        <p>{project.desc}</p>
         <IconContext.Provider
           value={{
             size: "35px",
@@ -93,7 +93,7 @@ export default (props) => {
             className: "icon",
           }}
         >
-          <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
+          <a target="_blank" rel="noreferrer noopener" href={project.url}>
             <FiArrowUpRight />
           </a>
         </IconContext.Provider>
@@ -105,11 +105,11 @@ export default (props) => {
             }}
           >
             <StackIcons>
-              {props.project.stack.map((element) => {
+              {project.stack.map((element) => {
                 if (icons[element])
-                  return icons[element](props.project.id + element)
+                  return icons[element](project.id + element)
                 else
-                  return <span key={props.project.id + element}>{element}</span>
+                  return <span key={project.id + element}>{element}</span>
               })}
             </StackIcons>
           </IconContext.Provider>

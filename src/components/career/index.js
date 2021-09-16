@@ -1,6 +1,8 @@
 import React from "react"
 import Flickity from "react-flickity-component"
 import { graphql, useStaticQuery } from "gatsby"
+import career from "src/data/career.js"
+
 import {
   CareerStep,
   CareerStepDate,
@@ -16,7 +18,6 @@ const flickityOptions = {
   freeScroll: true,
   reloadOnUpdate: true,
 }
-
 
 function calculateDate(startDate, endDate) {
   if (!endDate)
@@ -35,21 +36,6 @@ function calculateDate(startDate, endDate) {
     })}`
 }
 export default (props) => {
-  const careers = useStaticQuery(graphql`
-    query CareersQuery {
-      allStrapiCareer(sort: { order: DESC, fields: startDate }) {
-        nodes {
-          id
-          title
-          startDate
-          desc
-          endDate
-          companyLink
-        }
-      }
-    }
-  `).allStrapiCareer.nodes
-
   return (
     <CareerWrapper>
       <Flickity
@@ -57,7 +43,7 @@ export default (props) => {
         elementType={"div"}
         options={flickityOptions}
       >
-        {careers.map((step) => (
+        {career.map((step) => (
           <CareerStepWrapper key={step.title}>
             <CareerStep>
               <CareerStepDate>

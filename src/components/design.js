@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
 
 const DesignWrapper = styled.div`
   display: flex;
@@ -23,16 +23,12 @@ const DesignWrapper = styled.div`
   }
 `
 
-export default class Design extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <DesignWrapper className="list-item-margin">
-        <StaticImage src={`src/images/${this.props.design.imageName}`} />
-      </DesignWrapper>
-    )
-  }
+const Design = ({ design, image }) => {
+  return (
+    <DesignWrapper className="list-item-margin">
+      <GatsbyImage alt="" image={image} />
+    </DesignWrapper>
+  )
 }
+
+export default Design

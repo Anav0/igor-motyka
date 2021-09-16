@@ -1,8 +1,8 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import Design from "src/components/design"
 import { designs } from "src/data/designs.js"
+import { useStaticQuery, graphql } from "gatsby"
 
 const DesignWrapper = styled.ul`
   display: flex;
@@ -23,10 +23,33 @@ const DesignWrapper = styled.ul`
 `
 
 export default (props) => {
+  const images = useStaticQuery(graphql`
+    query Image {
+      allFile {
+        edges {
+          node {
+            name
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `).allFile.edges
+  let namesByImagedata = new Map()
+  for (let i = 0; i < images.length; i++) {
+    const element = images[i].node
+    namesByImagedata.set(element.name, element.childImageSharp.gatsbyImageData)
+  }
   return (
     <DesignWrapper>
       {designs.map((design) => (
-        <Design key={design.id} design={design}></Design>
+        <Design
+          key={design.id}
+          design={design}
+          image={namesByImagedata.get(design.imageName)}
+        ></Design>
       ))}
     </DesignWrapper>
   )

@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
 import Project from "src/components/project"
 import { projects } from "src/data/projects.js"
 

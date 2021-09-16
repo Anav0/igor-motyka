@@ -3,7 +3,7 @@ import { TweenMax, TimelineMax, Power2 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { IconContext } from "react-icons"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import {
   ImageOverlay,
   ImageWrapper,
@@ -79,7 +79,7 @@ export default (props) => {
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
-          <StaticImage src={`src/images/${props.project.cover}`} />
+          <StaticImage alt="" src={`../../images/${props.project.cover}`} />
           <ImageOverlay ref={projectImage} />
         </ImageWrapper>
       </a>

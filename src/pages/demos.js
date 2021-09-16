@@ -1,9 +1,8 @@
 import React from "react"
 import Layout from "src/components/layout"
 import Seo from "src/components/seo"
-import { graphql, useStaticQuery } from "gatsby"
 import { Demo, DemoImg, DemosList } from "src/styled-pages/demos.styled"
-import demos from "src/data/demos.js"
+import { demos } from "src/data/demos.js"
 
 const DemosPage = ({ location }) => {
   return (

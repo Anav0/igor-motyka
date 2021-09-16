@@ -31,7 +31,7 @@ export default class Design extends React.Component {
   render() {
     return (
       <DesignWrapper className="list-item-margin">
-        <StaticImage src={`src/images/${props.design.imageName}`} />
+        <StaticImage src={`src/images/${this.props.design.imageName}`} />
       </DesignWrapper>
     )
   }

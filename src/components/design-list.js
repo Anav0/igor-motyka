@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import styled from "styled-components"
 import Design from "src/components/design"
-import designs from "src/data/designs.js"
+import { designs } from "src/data/designs.js"
 
 const DesignWrapper = styled.ul`
   display: flex;

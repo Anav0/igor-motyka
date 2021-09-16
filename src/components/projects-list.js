@@ -2,6 +2,7 @@ import styled from "styled-components"
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Project from "src/components/project"
+import { projects } from "src/data/projects.js"
 
 const BoxWrapper = styled.ul`
   display: flex;
@@ -13,28 +14,10 @@ const BoxWrapper = styled.ul`
 `
 
 export default () => {
-  const projects = useStaticQuery(graphql`query ProjectsQuery {
-  allStrapiProject(sort: {order: ASC, fields: id}) {
-    nodes {
-      desc
-      title
-      finishedDate
-      id
-      url
-      stack
-      cover {
-        childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
-        }
-      }
-    }
-  }
-}
-`).allStrapiProject.nodes
   return (
     <BoxWrapper>
       {projects.map((project) => (
-        <Project key={project.id} project={project}/>
+        <Project key={project.id} project={project} />
       ))}
     </BoxWrapper>
   )

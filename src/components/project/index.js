@@ -3,9 +3,22 @@ import { TweenMax, TimelineMax, Power2 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
 import { IconContext } from "react-icons"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
-import { GatsbyImage } from "gatsby-plugin-image";
-import { ImageOverlay, ImageWrapper, ProjectDesc, ProjectWrapper, Stack, StackIcons } from "./project.styled"
-import { FaPython, FaReact, FaSass, FaVuejs, FiArrowUpRight } from "react-icons/all"
+import { StaticImage } from "gatsby-plugin-image"
+import {
+  ImageOverlay,
+  ImageWrapper,
+  ProjectDesc,
+  ProjectWrapper,
+  Stack,
+  StackIcons,
+} from "./project.styled"
+import {
+  FaPython,
+  FaReact,
+  FaSass,
+  FaVuejs,
+  FiArrowUpRight,
+} from "react-icons/all"
 
 const icons = {
   vue: (key) => <FaVuejs key={key} />,
@@ -33,14 +46,14 @@ export default (props) => {
         image,
         1.75,
         { skewX: 30, scale: 1.5 },
-        { skewX: 0, xPercent: 150, ease: Power2.easeOut },
+        { skewX: 0, xPercent: 150, ease: Power2.easeOut }
       )
       .fromTo(
         desc,
         0.5,
         { scale: 0, transformOrigin: "bottom right" },
         { scale: 1, ease: Power2.easeOut },
-        "-=1.25",
+        "-=1.25"
       )
 
     new ScrollMagic.Scene({
@@ -66,7 +79,7 @@ export default (props) => {
     <ProjectWrapper className="list-item-margin" ref={projectWrapper}>
       <a target="_blank" rel="noreferrer noopener" href={props.project.url}>
         <ImageWrapper>
-          <GatsbyImage image={props.project.cover.childImageSharp.gatsbyImageData} />
+          <StaticImage src={`src/images/${props.project.cover}`} />
           <ImageOverlay ref={projectImage} />
         </ImageWrapper>
       </a>
@@ -103,5 +116,5 @@ export default (props) => {
         </Stack>
       </ProjectDesc>
     </ProjectWrapper>
-  );
+  )
 }

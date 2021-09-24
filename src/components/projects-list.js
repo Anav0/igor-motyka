@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import React from "react"
 import Project from "src/components/project"
-import { projects } from "src/data/projects.js"
 import { useStaticQuery, graphql } from "gatsby"
 
 const BoxWrapper = styled.ul`
@@ -13,7 +12,7 @@ const BoxWrapper = styled.ul`
   max-width: 1400px;
 `
 
-export default ({ namesByImagedata }) => {
+export default ({ namesByImagedata, projects }) => {
   return (
     <BoxWrapper>
       {projects.map((project) => (

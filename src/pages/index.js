@@ -12,6 +12,8 @@ import {
   SectionHeaderWrapper,
 } from "src/styled/index.styled"
 import { useStaticQuery, graphql } from "gatsby"
+import { myProjects } from "../data/my-projects"
+import { workProjects } from "../data/work-projects"
 
 const IndexPage = ({ location }) => {
   // TODO: not ideal to query all images
@@ -39,10 +41,22 @@ const IndexPage = ({ location }) => {
       <Seo title="Home" />
       <Header />
       <Section className="firstSection">
-        <SectionHeaderWrapper id="projects">
-          <SectionHeader>projects</SectionHeader>
+        <SectionHeaderWrapper id="workProjects">
+          <SectionHeader>Work projects</SectionHeader>
         </SectionHeaderWrapper>
-        <ProjectList namesByImagedata={namesByImagedata} />
+        <ProjectList
+          projects={workProjects}
+          namesByImagedata={namesByImagedata}
+        />
+      </Section>
+      <Section>
+        <SectionHeaderWrapper id="myProjects">
+          <SectionHeader>My projects</SectionHeader>
+        </SectionHeaderWrapper>
+        <ProjectList
+          projects={myProjects}
+          namesByImagedata={namesByImagedata}
+        />
       </Section>
       <Section>
         <SectionHeaderWrapper id="designs">

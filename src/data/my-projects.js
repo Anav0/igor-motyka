@@ -1,15 +1,13 @@
-export const projects = [
+export const myProjects = [
   {
-    id: "0",
-    title: "BGS",
-    desc: "Home website for a company that sells ready to use casino web templates.",
+    title: "Hangman",
+    desc: "Animated hangman game",
     finishedDate: new Date(),
-    url: "http://bgs.bet/",
-    stack: ["nuxt", "sass"],
-    imageName: "bgs",
+    url: "https://netguru-hangman.netlify.app/",
+    stack: ["svelte", "sass"],
+    imageName: "hangman",
   },
   {
-    id: "1",
     title: "Animal shelter",
     desc: "My first proper website! It was created for my local pet shelter. Unfortunatlly they didn't responded to my email offering them this website. :c",
     finishedDate: new Date(),
@@ -18,7 +16,6 @@ export const projects = [
     imageName: "shelter",
   },
   {
-    id: "2",
     title: "Oliwia Czuk's portfolio",
     desc: "Portfolio website for landscape designer",
     finishedDate: new Date(),
@@ -27,7 +24,6 @@ export const projects = [
     imageName: "czuk",
   },
   {
-    id: "3",
     title: "Drawing automata",
     desc: "Web application for drawing and minimizing deterministic finite state automata (DFA)",
     finishedDate: new Date(),
@@ -36,7 +32,6 @@ export const projects = [
     imageName: "automata",
   },
   {
-    id: "4",
     title: "Minmax tic tac toe",
     desc: "A tic tac toe game where you play against minmax algorithm",
     finishedDate: new Date(),

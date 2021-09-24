@@ -11,7 +11,7 @@ import {
 
 const navItems = [
   { text: "Home", anchor: "#home" },
-  { text: "Projects", anchor: "#projects" },
+  { text: "Projects", anchor: "#workProjects" },
   { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
   { text: "Demos", to: "#demos" },

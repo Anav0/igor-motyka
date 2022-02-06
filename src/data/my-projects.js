@@ -1,5 +1,13 @@
 export const myProjects = [
   {
+    title: "Lindenmayer systems",
+    desc: "L-systems editor",
+    finishedDate: new Date(),
+    url: "https://distracted-hawking-0c9c1b.netlify.app/",
+    stack: ["rust", "wasm"],
+    imageName: "lsystem",
+  },
+  {
     title: "Hangman",
     desc: "Animated hangman game",
     finishedDate: new Date(),

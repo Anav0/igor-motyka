@@ -15,7 +15,10 @@ const navItems = [
   { text: "Designs", anchor: "#designs" },
   { text: "Career", anchor: "#career" },
   { text: "Demos", to: "#demos" },
-  { text: "Resume", to: "/resume" },
+  {
+    text: "Resume",
+    to: "https://github.com/Anav0/resume/files/8011239/motyka_cv.pdf",
+  },
 ]
 
 export default ({ location }) => {

@@ -1,5 +1,5 @@
 import React from "react"
-import { FaRegEnvelope, FaGithub, FaBehance } from "react-icons/fa"
+import { FaRegEnvelope, FaGithub, FaBehance, FaLinkedin } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { HeaderWrapper, Icons } from "./header.styled"
 
@@ -10,7 +10,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <HeaderWrapper >
+      <HeaderWrapper>
         <h1>Igor Motyka</h1>
         <p>Fullstack developer</p>
         <IconContext.Provider
@@ -29,6 +29,13 @@ export default class Header extends React.Component {
               href="https://github.com/Anav0"
             >
               <FaGithub />
+            </a>{" "}
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://www.linkedin.com/in/%E1%9B%9D-igor-m-873439168/"
+            >
+              <FaLinkedin />
             </a>
             <a
               target="_blank"

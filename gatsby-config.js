@@ -11,25 +11,7 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: process.env.GA_ID,
-        head: true,
-      },
-    },
     `gatsby-plugin-smoothscroll`,
-    {
-      resolve: `gatsby-source-strapi`,
-      options: {
-        apiURL:
-          process.env.NODE_ENV === `production`
-            ? process.env.GATSBY_API_URL
-            : "http://localhost:1337",
-        contentTypes: [`project`, `career`, `design`, `demo`],
-      },
-    },
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-root-import`,
@@ -50,8 +32,5 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

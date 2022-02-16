@@ -17,7 +17,7 @@ const navItems = [
   { text: "Demos", to: "#demos" },
   {
     text: "Resume",
-    to: "https://github.com/Anav0/resume/files/8011239/motyka_cv.pdf",
+    to: "https://github.com/Anav0/resume/releases/download/en/motyka_cv.pdf",
   },
 ]
 

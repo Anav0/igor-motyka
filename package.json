@@ -34,7 +34,7 @@
     "scrollmagic-plugin-gsap": "^1.0.4",
     "simplex-noise": "^4.0.1",
     "styled-components": "^6.1.8",
-    "three": "^0.163.0"
+    "three": "^0.137.5"
   },
   "devDependencies": {
     "gatsby-plugin-root-import": "^2.0.9",

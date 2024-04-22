@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { TweenMax, TimelineMax, Power2 } from "gsap"
 import * as ScrollMagic from "scrollmagic"
-import { IconContext } from "react-icons"
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import {
@@ -12,19 +11,12 @@ import {
   Stack,
   StackIcons,
 } from "./project.styled"
-import {
-  FaPython,
-  FaReact,
-  FaSass,
-  FaVuejs,
-  FiArrowUpRight,
-} from "react-icons/all"
 
 const icons = {
-  vue: (key) => <FaVuejs key={key} />,
-  scss: (key) => <FaSass key={key} />,
-  react: (key) => <FaReact key={key} />,
-  python: (key) => <FaPython key={key} />,
+  vue: (key) => <span key={key} >Vue</span>,
+  scss: (key) => <span key={key} >Scss</span>,
+  react: (key) => <span key={key} >React</span>,
+  python: (key) => <span key={key} >Python</span>,
 }
 
 export default ({ project, image }) => {
@@ -86,24 +78,12 @@ export default ({ project, image }) => {
       <ProjectDesc ref={projectDesc}>
         <h1>{project.title}</h1>
         <p>{project.desc}</p>
-        <IconContext.Provider
-          value={{
-            size: "35px",
-            style: { margin: "24px" },
-            className: "icon",
-          }}
-        >
           <a target="_blank" rel="noreferrer noopener" href={project.url}>
-            <FiArrowUpRight />
+            <span>ICON</span>
           </a>
-        </IconContext.Provider>
+        
         <Stack>
           <h5 className="stack-header">Stack:</h5>
-          <IconContext.Provider
-            value={{
-              size: "24px",
-            }}
-          >
             <StackIcons>
               {project.stack.map((element) => {
                 if (icons[element])
@@ -112,7 +92,6 @@ export default ({ project, image }) => {
                   return <span key={project.id + element}>{element}</span>
               })}
             </StackIcons>
-          </IconContext.Provider>
         </Stack>
       </ProjectDesc>
     </ProjectWrapper>

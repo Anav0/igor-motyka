@@ -16,7 +16,7 @@ export class CursorLight {
     init(scene) {
         this.light = new THREE.PointLight(0xffffff, 0.75, 0, 2)
 
-        this.geometry = new THREE.SphereBufferGeometry(32, 32, 32)
+        this.geometry = new THREE.SphereGeometry(32, 32, 32)
         this.material = new THREE.MeshBasicMaterial({
             color: 0xfffafa,
         })
@@ -34,7 +34,7 @@ export class CursorLight {
     }
 
     update(scene) {
-        if (!this.light) return
+        if (!this.light) throw Error("No light!")
 
         let vector = new THREE.Vector3(this.mouse.x, this.mouse.y, 0.5)
         vector.unproject(this.camera)

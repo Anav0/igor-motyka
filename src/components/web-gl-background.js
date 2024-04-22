@@ -15,33 +15,6 @@ const BackgroundCanvas = styled.canvas`
 `
 
 export const WebGlBackground = () => {
-  // const getScrollPercent = () => {
-  //   const h = document.documentElement,
-  //     b = document.body,
-  //     st = "scrollTop",
-  //     sh = "scrollHeight"
-  //   return ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
-  // }
-
-  // const lerp = (a, b, t) => {
-  //   return (1 - t) * a + t * b
-  // }
-
-  const updateCamera = (e, camera, initCameraY) => {
-    // const minHeight = 0;
-    // const maxHeight = window.innerHeight;
-
-    // if (camera.position.y + increaseBy < maxHeight && e.deltaY < 0) {
-    //   console.log("SCROLL 1");
-    //   camera.position.y -= 100
-    // }
-
-    // if (camera.position.y - increaseBy > minHeight && e.deltaY > 0) {
-    //   console.log("SCROLL 2");
-    //   camera.position.y += 100
-    // }
-    // camera.updateProjectionMatrix()
-  }
 
   const hookEvents = (renderer, camera, initCameraY) => {
     window.addEventListener("resize", (e) => {
@@ -49,12 +22,6 @@ export const WebGlBackground = () => {
       camera.updateProjectionMatrix()
       renderer.setSize(window.innerWidth, window.innerHeight)
     }, false)
-
-    window.addEventListener("wheel", (e) => updateCamera(e, camera, initCameraY))
-
-    window.addEventListener("touchstart", (e) => updateCamera(e, camera, initCameraY))
-
-    window.addEventListener("touchmove", (e) => updateCamera(e, camera, initCameraY))
   }
 
   useEffect(() => {
@@ -68,7 +35,6 @@ export const WebGlBackground = () => {
     )
     camera.position.z = 3000
     camera.position.y = initCameraY
-
     const objects = [new Background(camera), new CursorLight(camera), new Particles()];
 
     const renderer = new THREE.WebGLRenderer({

@@ -11,14 +11,10 @@ import {
 
 const navItems = [
   { text: "Home", anchor: "#home" },
-  { text: "Projects", anchor: "#workProjects" },
+  { text: "Work", anchor: "#workProjects" },
+  { text: "Hobby", anchor: "#myProjects" },
   { text: "Designs", anchor: "#designs" },
-  { text: "Career", anchor: "#career" },
   { text: "Demos", to: "#demos" },
-  {
-    text: "Resume",
-    to: "https://github.com/Anav0/resume/releases/download/en/motyka_cv.pdf",
-  },
 ]
 
 export default ({ location }) => {

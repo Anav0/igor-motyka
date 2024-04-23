@@ -1,11 +1,27 @@
 export const myProjects = [
   {
-    title: "Lindenmayer systems",
-    desc: "L-systems editor",
+    title: "Genetic Image Drawer",
+    desc: "Genetic algorithm that tries to draw a copy of an image using just rectangles. Program gives a real time feedback to the user, who can watch its progress",
     finishedDate: new Date(),
-    url: "https://distracted-hawking-0c9c1b.netlify.app/",
-    stack: ["rust", "wasm"],
-    imageName: "lsystem",
+    url: "http://github.com/Anav0/genetic-drawer-rs",
+    stack: ["rust"],
+    imageName: "face",
+  },
+  {
+    title: "Voronoi",
+    desc: "Really cool interactive voronoi diagram generator. Allows for runtime change of distance function as well as number of points",
+    finishedDate: new Date(),
+    url: "http://github.com/Anav0/voronoi-rs",
+    stack: ["rust"],
+    imageName: "voronoi",
+  },
+  {
+    title: "Hex",
+    desc: "A hexadecimal file explorer. Allows basic operations on files like search, find and replace etc.",
+    finishedDate: new Date(),
+    url: "http://github.com/Anav0/hex-rs",
+    stack: ["rust"],
+    imageName: "hex",
   },
   {
     title: "Hangman",
@@ -14,22 +30,6 @@ export const myProjects = [
     url: "https://netguru-hangman.netlify.app/",
     stack: ["svelte", "sass"],
     imageName: "hangman",
-  },
-  {
-    title: "Animal shelter",
-    desc: "My first proper website! It was created for my local pet shelter. Unfortunatlly they didn't responded to my email offering them this website. :c",
-    finishedDate: new Date(),
-    url: "https://animal-shelter.netlify.app/",
-    stack: ["vue", "Mockaroo"],
-    imageName: "shelter",
-  },
-  {
-    title: "Oliwia Czuk's portfolio",
-    desc: "Portfolio website for landscape designer",
-    finishedDate: new Date(),
-    url: "https://oliwia-czuk.netlify.app/",
-    stack: ["Gsap", "Gatsby"],
-    imageName: "czuk",
   },
   {
     title: "Drawing automata",
@@ -47,4 +47,13 @@ export const myProjects = [
     stack: ["JS"],
     imageName: "tic",
   },
+  {
+    title: "Portfolio",
+    desc: "Portfolio website for landscape designer",
+    finishedDate: new Date(),
+    url: "https://oliwia-czuk.netlify.app/",
+    stack: ["Gsap", "Gatsby"],
+    imageName: "czuk",
+  },
+
 ]

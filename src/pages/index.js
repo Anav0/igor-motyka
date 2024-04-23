@@ -34,6 +34,7 @@ const IndexPage = ({ location }) => {
   let namesByImagedata = new Map()
   for (let i = 0; i < images.length; i++) {
     const element = images[i].node
+    console.log(element)
     namesByImagedata.set(element.name, element.childImageSharp.gatsbyImageData)
   }
   return (
@@ -69,12 +70,6 @@ const IndexPage = ({ location }) => {
           <SectionHeader>demos</SectionHeader>
         </SectionHeaderWrapper>
         <Demos namesByImagedata={namesByImagedata} />
-      </Section>
-      <Section>
-        <SectionHeaderWrapper id="career">
-          <SectionHeader>career</SectionHeader>
-        </SectionHeaderWrapper>
-        <Career />
       </Section>
     </Layout>
   )

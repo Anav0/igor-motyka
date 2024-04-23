@@ -20,7 +20,7 @@ export default class Header extends React.Component {
           }}
         >
           <Icons>
-            <a href="mailto:igor_motyka@mail.com">
+            <a href="mailto:igormotyka6@mail.com">
               <FaRegEnvelope />
             </a>
             <a
@@ -30,13 +30,6 @@ export default class Header extends React.Component {
             >
               <FaGithub />
             </a>{" "}
-            <a
-              target="_blank"
-              rel="noreferrer noopener"
-              href="https://www.linkedin.com/in/%E1%9B%9D-igor-m-873439168/"
-            >
-              <FaLinkedin />
-            </a>
             <a
               target="_blank"
               rel="noreferrer noopener"

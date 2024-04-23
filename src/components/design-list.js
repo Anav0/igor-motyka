@@ -22,15 +22,19 @@ const DesignWrapper = styled.ul`
 `
 
 export default ({ namesByImagedata }) => {
+  let id = 0;
   return (
     <DesignWrapper>
-      {designs.map((design) => (
+      {designs.map((design) => {
+        id+=1;
+        return (
         <Design
-          key={design.id}
+          key={`${design}-${id}`}
           design={design}
           image={namesByImagedata.get(design.imageName)}
         ></Design>
-      ))}
+        
+      )})}
     </DesignWrapper>
   )
 }

@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-flickity-component": "^4.0.7",
     "react-helmet": "^6.1.0",
+    "react-icons": "^5.1.0",
     "scrollmagic": "^2.0.8",
     "scrollmagic-plugin-gsap": "^1.0.4",
     "simplex-noise": "^4.0.1",

@@ -12,13 +12,17 @@ import {
   Stack,
   StackIcons,
 } from "./project.styled"
+
 import {
-  FaPython,
-  FaReact,
-  FaSass,
   FaVuejs,
+  FaSass,
+  FaReact,
+  FaPython,
+} from "react-icons/fa"
+
+import {
   FiArrowUpRight,
-} from "react-icons/all"
+} from "react-icons/fi"
 
 const icons = {
   vue: (key) => <FaVuejs key={key} />,
@@ -46,14 +50,14 @@ export default ({ project, image }) => {
         image,
         1.75,
         { skewX: 30, scale: 1.5 },
-        { skewX: 0, xPercent: 150, ease: Power2.easeOut }
+        { skewX: 0, xPercent: 150, ease: Power2.easeOut },
       )
       .fromTo(
         desc,
         0.5,
         { scale: 0, transformOrigin: "bottom right" },
         { scale: 1, ease: Power2.easeOut },
-        "-=1.25"
+        "-=1.25",
       )
 
     new ScrollMagic.Scene({

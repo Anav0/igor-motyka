@@ -20,7 +20,7 @@ export default class Header extends React.Component {
           }}
         >
           <Icons>
-            <a href="mailto:igormotyka6@mail.com">
+            <a href="mailto:igormotyka6@gmail.com">
               <FaRegEnvelope />
             </a>
             <a
